@@ -81,6 +81,24 @@ class Veekls_API_Client_Admin {
 	}
 
 	/**
+	 * Adds settings link on the plugins list.
+	 *
+	 * @since   1.0.0
+	 */
+	public function add_settings_link( $links ) {
+		$href = admin_url( '/options-general.php' );
+
+		$links = array_merge(
+			array(
+				include_once 'partial/veekls-api-client-admin-settings-link.php',
+			),
+			$links
+		);
+
+		return $links;
+	}
+
+	/**
 	 * Registers the WordPress admin menu option.
 	 *
 	 * @since   1.0.0

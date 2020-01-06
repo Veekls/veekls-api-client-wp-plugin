@@ -170,6 +170,12 @@ class Veekls_API_Client {
 		);
 
 		$this->loader->add_action(
+			'plugin_action_links_',
+			$plugin_admin,
+			'add_settings_link'
+		);
+
+		$this->loader->add_action(
 			'admin_menu',
 			$plugin_admin,
 			'setup_settings_page'
