@@ -39,6 +39,15 @@ class Veekls_API_Client {
 	protected $loader;
 
 	/**
+	 * The basename of this plugin.
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @var     string     $plugin_basename  The plugin's basename.
+	 */
+	protected $plugin_basename;
+
+	/**
 	 * The unique identifier of this plugin.
 	 *
 	 * @since   1.0.0
@@ -65,14 +74,15 @@ class Veekls_API_Client {
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct() {
+	public function __construct( $plugin_basename ) {
 		if ( defined( 'VEEKLS_API_CLIENT_VERSION' ) ) {
 			$this->version = VEEKLS_API_CLIENT_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
 
-		$this->plugin_name = 'veekls-api-client';
+		$this->plugin_name     = 'veekls-api-client';
+		$this->plugin_basename = $plugin_basename;
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -169,10 +179,12 @@ class Veekls_API_Client {
 			$this->get_version()
 		);
 
-		$this->loader->add_action(
-			'plugin_action_links_',
+		$this->loader->add_filter(
+			'plugin_action_links_' . $this->plugin_basename,
 			$plugin_admin,
-			'add_settings_link'
+			'add_settings_link',
+			10,
+			1
 		);
 
 		$this->loader->add_action(

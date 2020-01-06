@@ -85,21 +85,25 @@ class Veekls_API_Client_Admin {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @param   array $links The links list.
+	 * @param   array $actions The links list.
 	 *
 	 * @return  array The updated links list.
 	 */
-	public function add_settings_link( $links ) {
-		$href = admin_url( '/options-general.php' );
+	public function add_settings_link( $actions ) {
 
-		$links = array_merge(
+		$page = $this->settings_page_slug;
+		$href = admin_url( "/admin.php?page=$page" );
+
+		$actions = array_merge(
 			array(
-				include_once 'partials/veekls-api-client-admin-settings-link.php',
+				__( 'Settings', 'veekls-api-client' ) =>
+				"<a href=\"$href\">Settings</a>",
 			),
-			$links
+			$actions
 		);
 
-		return $links;
+		return $actions;
+
 	}
 
 	/**

@@ -78,7 +78,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-veekls-api-client.php';
  */
 function run_veekls_api_client() {
 
-	$plugin = new Veekls_API_Client();
+	$plugin = new Veekls_API_Client( plugin_basename( __FILE__ ) );
 	$plugin->run();
 
 }
