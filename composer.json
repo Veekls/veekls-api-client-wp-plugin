@@ -1,0 +1,22 @@
+{
+	"name": "veekls/veekls-api-client",
+	"description": "Veekls API Client WordPress plugin.",
+	"type": "wordpress-plugin",
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^2.2",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"squizlabs/php_codesniffer": "^3.5"
+	},
+	"license": "GPLv2",
+	"authors": [
+		{
+			"name": "Veekls SpA.",
+			"email": "hola@veekls.com"
+		},
+		{
+			"name": "Santiago G. Marín",
+			"email": "santiago.marin@veekls.com"
+		}
+	]
+}

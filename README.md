@@ -1,2 +1,1 @@
-# veekls-api-client-wp-plugin
-Veekls public API Client WordPress plugin.
+# Veekls API Client WordPress Plugin
