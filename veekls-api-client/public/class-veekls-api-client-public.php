@@ -54,48 +54,33 @@ class Veekls_API_Client_Public {
 	}
 
 	/**
-	 * Register the stylesheets for the public-facing side of the site.
+	 * Fetches data from the remote API server.
 	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Veekls_API_Client_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Veekls_API_Client_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/veekls-api-client-public.css', array(), $this->version, 'all' );
-
-	}
-
-	/**
-	 * Register the JavaScript for the public-facing side of the site.
+	 * @since   1.0.0
 	 *
-	 * @since    1.0.0
+	 * @param   string $url The full URL to fetch from.
+	 * @param   array  $query The HTTP request query parameters.
+	 * @param   array  $args The HTTP request arguments.
+	 *
+	 * @return array The response data.
 	 */
-	public function enqueue_scripts() {
+	private function fetch( $url, $query = array(), $args = array() ) {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Veekls_API_Client_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Veekls_API_Client_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+		$url .= '?' . http_build_query( $options->data );
+		$args = array_merge(
+			$args,
+			array(
+				'headers' => array(
+					'Authorization' =>
+						'Basic ' . get_option( 'veekls_api_client_key' ),
+				),
+			)
+		);
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/veekls-api-client-public.js', array( 'jquery' ), $this->version, false );
+		$response = wp_remote_get( $url, $args );
+		$body     = wp_remote_retrieve_body( $response );
+
+		return json_decode( $body );
 
 	}
 
@@ -104,7 +89,8 @@ class Veekls_API_Client_Public {
 	 * Build a Veekls picture URL.
 	 *
 	 * @since   1.0.0
-	 * @param   string $id   The picture id.
+	 *
+	 * @param   string $id The picture id.
 	 *
 	 * @return  string The full picture url.
 	 */
@@ -113,45 +99,51 @@ class Veekls_API_Client_Public {
 	}
 
 	/**
-	 * Fetches a single Vehicle by id or the vehicles list.
+	 * Fetches a single Vehicle by id with the provided query.
 	 *
 	 * @since   1.0.0
-	 * @param   string $id  The resource id.
 	 *
-	 * @return  array  The request data.
+	 * @param   array $id The Vehicle ID to fetch.
+	 * @param   array $query The HTTP request query params.
+	 *
+	 * @return  array The results data.
 	 */
-	public function vehicles( $id = null ) {
-		$url = null;
+	public function vehicle( $id, $query ) {
 
-		if ( $id ) {
-			$url = $this->vehicle_base . $id;
-		} else {
-			$url = $this->vehicles_base;
-		}
+		$url = $this->vehicle_base . $id;
 
-		$args = array(
-			'headers' => array(
-				'Authorization' =>
-					'Basic ' . get_option( 'veekls_api_client_key' ),
-			),
-		);
+		return $this->fetch( $url );
 
-		$response = wp_remote_get( $url, $args );
-		$body     = wp_remote_retrieve_body( $response );
+	}
 
-		return json_decode( $body );
+	/**
+	 * Fetches a Vehicles list with the provided query.
+	 *
+	 * @since   1.0.0
+	 *
+	 * @param   array $query  The HTTP request query params.
+	 *
+	 * @return  array  The results data.
+	 */
+	public function vehicles( $query = array() ) {
+
+		$url = $this->vehicles_base;
+
+		return $this->fetch( $url, $query );
+
 	}
 
 	/**
 	 * Translates vehicle type.
 	 *
 	 * @since   1.0.0
-	 * @param   string $type The Vehicle type.
+	 *
+	 * @param   string $vehicle The Vehicle data.
 	 *
 	 * @return  string The translated string.
 	 */
-	public static function vehicle_type( $type ) {
-		switch ( $type ) {
+	public static function vehicle_type( $vehicle ) {
+		switch ( $vehicle->type ) {
 			case 'TYPES.VEHICLE.AUTOMOBILE':
 				return esc_html__( 'Automobile', 'veekls-api-client' );
 
@@ -165,7 +157,7 @@ class Veekls_API_Client_Public {
 				return esc_html__( 'Pickup', 'veekls-api-client' );
 
 			case 'TYPES.VEHICLE.NAUTIC':
-				return esc_html__( 'Nautic', 'veekls-api-client' );
+				return esc_html__( 'Nautical', 'veekls-api-client' );
 
 			case 'TYPES.VEHICLE.TRUCK':
 				return esc_html__( 'Truck', 'veekls-api-client' );
@@ -182,14 +174,16 @@ class Veekls_API_Client_Public {
 	 * Translates vehicle type.
 	 *
 	 * @since   1.0.0
-	 * @param   string $type The Vehicle gearbox type.
+	 *
+	 * @param   string $vehicle The Vehicle data.
 	 *
 	 * @return  string The translated string.
 	 */
-	public static function gearbox_type( $type ) {
-		switch ( $type ) {
+	public static function gearbox_type( $vehicle ) {
+		switch ( $vehicle->gearbox ) {
 			case 'GEARBOX.MANUAL':
 				return esc_html__( 'Manual', 'veekls-api-client' );
+
 			case 'GEARBOX.AUTO':
 				return esc_html__( 'Auto', 'veekls-api-client' );
 		}
@@ -199,12 +193,13 @@ class Veekls_API_Client_Public {
 	 * Translates Vehicle fuel type.
 	 *
 	 * @since   1.0.0
-	 * @param   string $type The Vehicle fuel type.
+	 *
+	 * @param   string $vehicle The Vehicle data.
 	 *
 	 * @return  string The translated string.
 	 */
-	public static function fuel_type( $type ) {
-		switch ( $type ) {
+	public static function fuel_type( $vehicle ) {
+		switch ( $vehicle->fuel ) {
 			case 'FUEL.NATURAL_GAS':
 				return esc_html__( 'Natural Gas', 'veekls-api-client' );
 			case 'FUEL.BIODIESEL':
@@ -232,12 +227,13 @@ class Veekls_API_Client_Public {
 	 * Translates Vehicle characteristic type.
 	 *
 	 * @since   1.0.0
-	 * @param   string $type The Vehicle fuel type.
+	 *
+	 * @param   string $characteristic The characteristic const.
 	 *
 	 * @return  string The translated string.
 	 */
-	public static function characteristic_type( $type ) {
-		switch ( $type ) {
+	public static function characteristic_type( $characteristic ) {
+		switch ( $characteristic ) {
 			// Comfort.
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.AC':
 				return array(
@@ -465,21 +461,21 @@ class Veekls_API_Client_Public {
 		}
 	}
 
-
 	/**
-	 * Sets the custom title.
+	 * Builds the Vehicle's custom title.
 	 *
 	 * @since   1.0.0
+	 *
 	 * @param   string $title The current title.
+	 * @param   string $vehicle The vehicle data.
 	 *
 	 * @return  string The new title.
 	 */
-	public function title( $title ) {
+	public function title( $title, $vehicle ) {
+
 		$id = filter_input( INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS );
 
-		if ( get_the_ID() === 77 && $id ) {
-			$vehicle = $this->vehicles( $id );
-
+		if ( $id ) {
 			$title['title'] = $vehicle->brand . ' ' . $vehicle->model . ' ' .
 				$vehicle->version;
 		}
@@ -487,529 +483,4 @@ class Veekls_API_Client_Public {
 		return $title;
 	}
 
-	/**
-	 * Feed home function.
-	 *
-	 * @since   1.0.0
-	 * @param   array $atts The attributes.
-	 *
-	 * @return  string The HTML.
-	 */
-	public function vehicles_home( $atts ) {
-		$a = shortcode_atts(
-			array( 'total' => 5 ),
-			$atts
-		);
-
-		$html     = '<div class="carousel-slider3">';
-		$vehicles = $this->vehicles();
-		$count    = 0;
-
-		foreach ( $vehicles as $vehicle ) {
-			if ( $count >= $a['total'] ) {
-				break;
-			}
-
-			$html .= '
-				<div class="slide">
-					<div class="car-block">
-						<div class="img-flex">
-							<a href="' . home_url() . '/single-vehicle?id=' . $vehicle->_id . '">
-								<span class="align-center">
-									<i class="fa fa-3x fa-plus-square-o"></i>
-								</span>
-							</a>
-							<img src="' . $this->picture( $vehicle->pictures[0] ) . '" alt="" class="img-responsive">
-						</div>
-						<div class="car-block-bottom">
-							<h6>
-								<strong>' . $vehicle->brand . ' ' . $vehicle->model . ' ' . $vehicle->version . '</strong>
-							</h6>
-							<h6>' . $vehicle->year . ' - ' . number_format( $vehicle->odometer, 0, '', '.' ) . 'Km</h6>
-							<h5>$' . number_format( $vehicle->price, 0, '', '.' ) . '</h5>
-						</div>
-					</div>
-				</div>
-				';
-
-			$count++;
-		}
-
-		$html .= '</div>';
-
-		return $html;
-	}
-
-	/**
-	 * Vehicle feed widget shortcoder.
-	 *
-	 * @since   1.0.0
-	 * @param   array $atts The atts.
-	 *
-	 * @return  string The HTML.
-	 */
-	public function vehicles_footer( $atts ) {
-		$a = shortcode_atts(
-			array( 'total' => 5 ),
-			$atts
-		);
-
-		$vehicles = $this->vehicles();
-		$html     = '';
-		$count    = 0;
-
-		foreach ( $vehicles as $vehicle ) {
-			if ( $count >= $a['total'] ) {
-				break;
-			}
-
-			$html .= '
-				<div class="car-block recent_car">
-					<div class="img-flex">
-						<a href="' . home_url() . '/single-vehicle?id=' . $vehicle->_id . '">
-							<span class="align-center">
-								<i class="fa fa-2x fa-plus-square-o"></i>
-							</span>
-						</a>
-
-						<img src="' . $this->picture( $vehicle->pictures[0] ) . '" alt="" class="img-responsive">
-					</div>
-					<div class="car-block-bottom">
-						<h6>
-							<strong>' . $vehicle->brand . ' ' . $vehicle->model . ' ' . $vehicle->version . '</strong>
-						</h6>
-						<h6>' . $vehicle->year . ' - ' . number_format( $vehicle->odometer, 0, '', '.' ) . 'Km</h6>
-						<h5>$' . number_format( $vehicle->price, 0, '', '.' ) . '</h5>
-					</div>
-				</div>
-				';
-
-			$count++;
-		}
-
-		return $html;
-	}
-
-	/**
-	 * Vehicle feed catalog shortcode.
-	 *
-	 * @since   1.0.0
-	 * @param   array $atts The atts.
-	 *
-	 * @return  string The HTML.
-	 */
-	public function vehicles_catalog( $atts ) {
-		$vehicles = $this->vehicles();
-		$count    = 1;
-
-		$html = '<div class="car_listings sidebar margin-top-20 clearfix">';
-
-		foreach ( $vehicles as $vehicle ) {
-			$html .= '
-				<div class="inventory margin-bottom-20 clearfix scroll_effect fadeIn">
-					<input type="checkbox" name="a" class="checkbox compare_vehicle input-checkbox" id="vehicle_' . $count . '" />
-					<a class="inventory" href="' . home_url() . '/single-vehicle?id=' . $vehicle->_id . '">
-						<div class="title">' . $vehicle->brand . ' ' . $vehicle->model . ' ' . $vehicle->version . '</div>
-						<img src="' . $this->picture( $vehicle->pictures[0] ) . '" class="preview" alt="preview">
-						<table class="options-primary">
-							<tr>
-								<td class="option primary">' . esc_html__( 'Body Style', 'veekls-api-client' ) . ':</td>
-								<td class="spec">' . $this->vehicle_type( $vehicle->type ) . '</td>
-							</tr>
-							<tr>
-								<td class="option primary">' . esc_html__( 'Year', 'veekls-api-client' ) . ':</td>
-								<td class="spec">' . $vehicle->year . '</td>
-							</tr>
-							<tr>
-								<td class="option primary">' . esc_html__( 'Odometer', 'veekls-api-client' ) . ':</td>
-								<td class="spec">' . number_format( $vehicle->odometer, 0, '', '.' ) . 'Km</td>
-							</tr>
-						</table>
-						<table class="options-secondary">
-								<tr>
-									<td class="option secondary">' . esc_html__( 'Color', 'veekls-api-client' ) . ':</td>
-									<td class="spec">' . $vehicle->color . '</td>
-								</tr>
-								<tr>
-									<td class="option secondary">' . esc_html__( 'Gearbox', 'veekls-api-client' ) . ':</td>
-									<td class="spec">' . $this->gearbox_type( $vehicle->gearbox ) . '</td>
-								</tr>
-								<tr>
-									<td class="option secondary">' . esc_html__( 'Fuel', 'veekls-api-client' ) . ':</td>
-									<td class="spec">' . $this->fuel_type( $vehicle->fuel ) . '</td>
-								</tr>
-						</table>
-						<div class="price"><b>' . esc_html__( 'Price', 'veekls-api-client' ) . ':</b><br>
-							<div  style="font-size: 28px;" class="figure">$' . number_format( $vehicle->price, 0, '', '.' ) . '<br>
-						</div>
-						<!-- <div class="tax">Plus Sales Tax</div> -->
-						</div>
-						<div class="view-details gradient_button">
-							<i class="fa fa-plus-circle"></i>
-							<span>' . esc_html__( 'View Details', 'veekls-api-client' ) . '</span>
-						</div>
-
-						<div class="clearfix"></div>
-					</a>
-				</div>
-				';
-
-			$count++;
-		}
-
-		$html .= '
-			<div class="clearfix"></div>
-
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pagination_container">
-				<ul class="pagination margin-bottom-none margin-top-25 bottom_pagination md-margin-bottom-none xs-margin-bottom-60 sm-margin-bottom-60">
-					<li class="disabled">
-						<a href="#">
-							<i class="fa fa-angle-left"></i>
-						</a>
-					</li>
-					<li>
-						<a href="#">1</a>
-					</li>
-					<li>
-						<a href="#">2</a>
-					</li>
-					<li>
-						<a href="#">3</a>
-					</li>
-					<li>
-						<a href="#">4</a>
-					</li>
-					<li>
-						<a href="#">5</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa fa-angle-right"></i>
-						</a>
-					</li>
-				</ul>
-			</div>
-			';
-
-		$html .= '</div>';
-
-		return $html;
-	}
-
-	/**
-	 * Single Vehicle view shortcode.
-	 *
-	 * @since   1.0.0
-	 * @param   array $atts The atts.
-	 *
-	 * @return  string The HTML.
-	 */
-	public function vehicle( $atts ) {
-		$a = shortcode_atts(
-			array(
-				'total' => 5,
-				'id'    => 0,
-			),
-			$atts
-		);
-
-		$root_vehicle = $this->vehicles( $a['id'] );
-
-		$pictures       = $root_vehicle->pictures;
-		$pictures_html  = '';
-		$thumbnail_html = '';
-
-		foreach ( $pictures as $picture ) {
-			$pictures_html .= '
-				<li data-thumb="' . $this->picture( $picture ) . '">
-					<img style="margin:auto" src="' . $this->picture( $picture ) . '" alt="" data-full-image="' . $this->picture( $picture ) . '"  itemprop="image"/>
-				</li>
-				';
-
-			$thumbnail_html .= '
-				<li data-thumb="' . $this->picture( $picture ) . '">
-					<a href="#">
-						<img src="' . $this->picture( $picture ) . '" alt="" />
-					</a>
-				</li>
-				';
-		}
-
-		$thumbnail_htmljson .= '"' . $this->picture( $pictures[0] ) . '"';
-		$characteristics     = $root_vehicle->characteristics;
-		$comfort             = '';
-		$exterior            = '';
-		$security            = '';
-
-		foreach ( $characteristics as $characteristic ) {
-			$item = $this->characteristic_type( $characteristic );
-
-			switch ( $item['type'] ) {
-				case 'comfort':
-					$comfort .= '
-						<li>
-							<i class="fa-li fa fa-check"></i>
-							<span>' . $item['characteristic'] . '</span>
-						</li>
-						';
-					break;
-
-				case 'exterior':
-					$exterior .= '
-						<li>
-							<i class="fa-li fa fa-check"></i>
-							<span>' . $item['characteristic'] . '</span>
-						</li>
-						';
-					break;
-
-				case 'security':
-					$security .= '
-						<li>
-							<i class="fa-li fa fa-check"></i>
-							<span>' . $item['characteristic'] . '</span>
-						</li>
-						';
-					break;
-			};
-		};
-
-		// Widget Vehicles.
-		$related_html = '<div class="carousel-slider3">';
-		$vehicles     = $this->vehicles();
-		$count        = 0;
-
-		shuffle( $vehicles );
-
-		foreach ( $vehicles as $vehicle ) {
-			if ( $root_vehicle->brand === $vehicle->brand ) {
-				if ( $count >= $a['total'] ) {
-					break;
-				}
-
-				$related_html .= '
-					<div class="slide">
-						<div class="car-block">
-							<div class="img-flex">
-								<a href="' . home_url() . '/single-vehicle?id=' . $vehicle->_id . '">
-									<span class="align-center">
-										<i class="fa fa-3x fa-plus-square-o"></i>
-									</span>
-								</a>
-								<img src="' . $this->picture( $vehicle->pictures[0] ) . '" alt="" class="img-responsive">
-							</div>
-							<div class="car-block-bottom">
-								<h6>
-									<strong>' . $vehicle->brand . ' ' . $vehicle->model . ' ' . $vehicle->version . '</strong>
-								</h6>
-								<h6>' . $vehicle->year . ' - ' . number_format( $vehicle->odometer, 0, '', '.' ) . 'Km</h6>
-								<h5>$' . number_format( $vehicle->price, 0, '', '.' ) . '</h5>
-							</div>
-						</div>
-					</div>
-					';
-
-				$count++;
-			}
-		}
-
-		$related_html .= '</div>';
-
-		// For other images just change the class name of this section block
-		// like, class="dynamic-image-2" and add css for the changed class.
-
-		return '
-			<div class="clearfix"></div>
-
-			<section id="secondary-banner" class="dynamic-image-8">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-							<h2>' . $root_vehicle->brand . ' ' . $root_vehicle->model . ' ' . $root_vehicle->version . '</h2>
-							<h4>' . substr( $root_vehicle->promo->message, 0, 60 ) . '...</h4>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 ">
-							<ul class="breadcrumb">
-								<li>
-									<a href="' . home_url() . '">' . esc_html__( 'Home', 'veekls-api-client' ) . '</a>
-								</li>
-								<li>
-									<a href="' . home_url() . '/catalogo' . '">' . esc_html__( 'Inventory', 'veekls-api-client' ) . '</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<div class="message-shadow"></div>
-			<div class="clearfix"></div>
-
-			<section class="content">
-				<div class="container">
-					<div class="inner-page inventory-listing">
-						<div class="inner-page inventory-listing" itemscope itemtype="http://schema.org/Product">
-							<div class="inventory-heading margin-bottom-10 clearfix">
-								<div class="row">
-									<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-										<span class="margin-top-10"></span>
-									</div>
-									<div class="col-lg-2 col-md-2 col-sm-2 text-right" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-										<h2>
-											<span itemprop="priceCurrency" content="CLP">$</span>
-											<span itemprop="price"  content="' . $root_vehicle->price . '">' . number_format( $root_vehicle->price, 0, '', '.' ) . '</span>
-										</h2>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 left-content padding-left-none">
-									<div class="listing-slider">
-										<section class="slider home-banner">
-											<div class="flexslider" id="home-slider-canvas">
-												<ul class="slides">' . $pictures_html . '</ul>
-											</div>
-										</section>
-										<section class="home-slider-thumbs">
-											<div class="flexslider" id="home-slider-thumbs">
-												<ul class="slides">' . $thumbnail_html . '</ul>
-											</div>
-										</section>
-									</div>
-
-									<div class="clearfix"></div>
-
-									<div class="bs-example bs-example-tabs example-tabs margin-top-50">
-										<ul id="myTab" class="nav nav-tabs">
-											<li class="active">
-												<a href="#vehicle" data-toggle="tab">' . esc_html__( 'Vehicle Overview', 'veekls-api-client' ) . '</a>
-											</li>
-											<li>
-												<a href="#features" data-toggle="tab">' . esc_html__( 'Features', 'veekls-api-client' ) . '</a>
-											</li>
-										</ul>
-										<div id="myTabContent" class="tab-content margin-top-15 margin-bottom-20">
-											<div class="tab-pane fade in active" id="vehicle" itemprop="description">
-												<p>' . $root_vehicle->promo->message . '</p>
-											</div>
-											<div class="tab-pane fade" id="features">
-												<ul class="fa-ul">
-													<p style="margin-bottom:0">
-														<strong>' . esc_html__( 'Comfort', 'veekls-api-client' ) . ':</strong>
-													</p>
-
-													' . $comfort . '
-
-													<p style="margin-bottom:0">
-														<strong>' . esc_html__( 'Exterior', 'veekls-api-client' ) . ':</strong>
-													</p>
-
-													' . $exterior . '
-
-													<p style="margin-bottom:0">
-														<strong>' . esc_html__( 'Security', 'veekls-api-client' ) . ':</strong>
-													</p>
-
-													' . $security . '
-												</ul>
-											</div>
-										</div>
-									</div>
-
-									<div class="clearfix"></div>
-								</div>
-
-								<div class="col-lg-4 col-md-4 col-sm-4 right-content padding-right-none">
-									<div class="side-content">
-										<div class="car-info margin-bottom-50">
-											<div class="table-responsive">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td>' . esc_html__( 'Name', 'veekls-api-client' ) . ':</td>
-															<td itemprop="name">' . $root_vehicle->brand . ' ' . $root_vehicle->model . ' ' . $root_vehicle->version . '</td>
-														</tr>
-														<tr>
-															<td>' . esc_html__( 'Body Style', 'veekls-api-client' ) . ':</td>
-															<td>' . $this->vehicle_type( $root_vehicle->type ) . '</td>
-														</tr>
-														<tr>
-															<td>' . esc_html__( 'Brand', 'veekls-api-client' ) . ':</td>
-															<td itemprop="brand">' . $root_vehicle->brand . '</td>
-														</tr>
-														<tr>
-															<td>' . esc_html__( 'Model', 'veekls-api-client' ) . ':</td>
-															<td itemprop="model">' . $root_vehicle->model . '</td>
-														</tr>
-														<tr>
-															<td>' . esc_html__( 'Version', 'veekls-api-client' ) . ':</td>
-															<td>' . $root_vehicle->version . '</td>
-														</tr>
-														<tr>
-															<td>' . esc_html__( 'Year', 'veekls-api-client' ) . ':</td>
-															<td itemprop="releaseDate">' . $root_vehicle->year . '</td>
-														</tr>
-														<tr>
-															<td>' . esc_html__( 'Color', 'veekls-api-client' ) . ':</td>
-															<td itemprop="color">' . $root_vehicle->color . '</td>
-														</tr>
-														<tr>
-															<td>' . esc_html__( 'Odometer', 'veekls-api-client' ) . ':</td>
-															<td>' . number_format( $root_vehicle->odometer, 0, '', '.' ) . 'Km</td>
-														</tr>
-														<tr>
-															<td>' . esc_html__( 'Version', 'veekls-api-client' ) . ':</td>
-															<td>' . $root_vehicle->version . '</td>
-														</tr>
-														<tr>
-															<td>' . esc_html__( 'Gearbox', 'veekls-api-client' ) . ':</td>
-															<td>' . $this->gearbox_type( $root_vehicle->gearbox ) . '</td>
-														</tr>
-														<tr>
-															<td>' . esc_html__( 'Fuel', 'veekls-api-client' ) . ':</td>
-															<td>' . $this->fuel_type( $root_vehicle->fuel ) . '</td>
-														</tr>
-														<tr>
-															<td>' . esc_html__( 'Link', 'veekls-api-client' ) . ':</td>
-															<td itemprop="url">' . home_url() . '/catalogo' . '">'
-																. esc_html__( 'Inventory', 'veekls-api-client' ) .
-															'</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-
-							<div class="clearfix"></div>
-
-							<div class="recent-vehicles-wrap">
-								<div class="row">
-									<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 recent-vehicles padding-left-none xs-padding-bottom-20">
-										<h5 class="margin-top-none">Similar Vehicles</h5>
-										<p>Browse through the vast selection of vehicles that have recently been added to our inventory.</p>
-										<div class="arrow3 clearfix" id="slideControls3">
-											<span class="prev-btn"></span>
-											<span class="next-btn"></span>
-										</div>
-									</div>
-									<div class="col-md-10 col-sm-8 padding-right-none sm-padding-left-none xs-padding-left-none">
-										' . $related_html . '
-									</div>
-								</div>
-							</div>
-
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<div class="clearfix"></div>
-			';
-	}
 }

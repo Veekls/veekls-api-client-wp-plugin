@@ -221,17 +221,15 @@ class Veekls_API_Client {
 			$this->get_version()
 		);
 
-		$this->loader->add_action(
-			'wp_enqueue_scripts',
-			$plugin_public,
-			'enqueue_styles'
-		);
+		$this->loader->add_filter( 'veekls_characteristic_type', $plugin_public, 'characteristic_type', 0, 1 );
+		$this->loader->add_filter( 'veekls_gearbox_type', $plugin_public, 'gearbox_type', 0, 1 );
+		$this->loader->add_filter( 'veekls_vehicle_type', $plugin_public, 'vehicle_type', 0, 1 );
+		$this->loader->add_filter( 'veekls_fuel_type', $plugin_public, 'fuel_type', 0, 1 );
 
-		$this->loader->add_action(
-			'wp_enqueue_scripts',
-			$plugin_public,
-			'enqueue_scripts'
-		);
+		$this->loader->add_filter( 'veekls_vehicles', $plugin_public, 'vehicles', 0, 1 );
+		$this->loader->add_filter( 'veekls_vehicle', $plugin_public, 'vehicle', 0, 2 );
+		$this->loader->add_filter( 'veekls_picture', $plugin_public, 'picture', 0, 1 );
+
 	}
 
 	/**
