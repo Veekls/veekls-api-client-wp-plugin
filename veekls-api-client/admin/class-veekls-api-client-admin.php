@@ -91,13 +91,14 @@ class Veekls_API_Client_Admin {
 	 */
 	public function add_settings_link( $actions ) {
 
-		$page = $this->settings_page_slug;
-		$href = admin_url( "/admin.php?page=$page" );
+		$page  = $this->settings_page_slug;
+		$href  = admin_url( "/admin.php?page=$page" );
+		$title = esc_html__( 'Settings', 'veekls-api-client' );
 
 		$actions = array_merge(
 			array(
-				__( 'Settings', 'veekls-api-client' ) =>
-				"<a href=\"$href\">Settings</a>",
+				$title =>
+				"<a href=\"$href\">$title</a>",
 			),
 			$actions
 		);
