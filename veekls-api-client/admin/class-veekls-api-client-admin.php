@@ -88,15 +88,16 @@ class Veekls_API_Client_Admin {
 	public function setup_settings_page() {
 
 		add_menu_page(
-			'Veekls API Client Settings',
-			'Veekls API',
+			esc_html__( 'Veekls API Client Settings', 'veekls-api-client' ),
+			esc_html__( 'Veekls API', 'veekls-api-client' ),
 			'manage_options',
 			$this->settings_page_slug,
 			array( $this, 'setup_settings_page_content' ),
 			'data:image/svg+xml;base64,' .
 				base64_encode( // phpcs:ignore
 					file_get_contents(
-						plugin_dir_path( __DIR__ ) . 'admin/images/veekls-api-client-admin-icon.svg'
+						plugin_dir_path( __DIR__ ) .
+						'admin/images/veekls-api-client-admin-icon.svg'
 					)
 				),
 			100
@@ -113,7 +114,7 @@ class Veekls_API_Client_Admin {
 
 		add_settings_section(
 			$this->settings_api_key_section_slug,
-			'Veekls API Key Configuration',
+			esc_html__( 'Veekls API Key Configuration', 'veekls-api-client' ),
 			array( $this, 'api_key_section_text' ),
 			$this->settings_page_slug
 		);
@@ -129,7 +130,7 @@ class Veekls_API_Client_Admin {
 
 		add_settings_field(
 			'veekls_api_client_key',
-			'API Key',
+			esc_html__( 'API Key', 'veekls-api-client' ),
 			array( $this, 'setup_settings_api_key_field' ),
 			$this->settings_page_slug,
 			$this->settings_api_key_section_slug
@@ -148,8 +149,9 @@ class Veekls_API_Client_Admin {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die(
-				esc_html(
-					__( 'You do not have sufficient permissions to access this page.' )
+				esc_html__(
+					'You do not have sufficient permissions to access this page.',
+					'veekls-api-client'
 				)
 			);
 		}
@@ -167,7 +169,10 @@ class Veekls_API_Client_Admin {
 	 */
 	public function api_key_section_text() {
 
-		echo 'Copy and paste your API Key here. If you don\'t have it, please ask your Veekls Agent for it.';
+		echo esc_html__(
+			'Copy and paste your API Key here. If you don\'t have it, please ask your Veekls Agent for it.',
+			'veekls-api-client'
+		);
 
 	}
 

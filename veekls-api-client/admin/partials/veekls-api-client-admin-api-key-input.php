@@ -15,7 +15,7 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <input
-	placeholder="Paste your Veekls API Key here..."
+	placeholder="<?php esc_html_e( 'Paste your Veekls API Key here...', 'veekls-api-client' ); ?>"
 	value="<?php echo esc_html( $value ); ?>"
 	name="veekls_api_client_key"
 	id="veekls_api_client_key"

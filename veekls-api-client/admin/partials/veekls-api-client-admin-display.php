@@ -15,11 +15,15 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
-	<h2>Veekls API Client Settings</h2>
+	<h2>
+		<?php esc_html_e( 'Veekls API Client Settings', 'veekls-api-client' ); ?>
+	</h2>
 
 	<?php if ( $updated ) : ?>
 	<div class="notice notice-success is-dismissible">
-		<p>Your Veekls API Client settings have been updated!</p>
+		<p>
+			<?php esc_html_e( 'Your Veekls API Client settings have been updated!', 'veekls-api-client' ); ?>
+		</p>
 	</div>
 	<?php endif; ?>
 

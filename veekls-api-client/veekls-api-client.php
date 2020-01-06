@@ -41,7 +41,9 @@ define( 'VEEKLS_API_CLIENT_VERSION', '1.0.0' );
  * This action is documented in includes/class-veekls-api-client-activator.php
  */
 function activate_veekls_api_client() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-veekls-api-client-activator.php';
+	require_once plugin_dir_path( __FILE__ ) .
+	'includes/class-veekls-api-client-activator.php';
+
 	Veekls_API_Client_Activator::activate();
 }
 
@@ -50,7 +52,9 @@ function activate_veekls_api_client() {
  * This action is documented in includes/class-veekls-api-client-deactivator.php
  */
 function deactivate_veekls_api_client() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-veekls-api-client-deactivator.php';
+	require_once plugin_dir_path( __FILE__ ) .
+	'includes/class-veekls-api-client-deactivator.php';
+
 	Veekls_API_Client_Deactivator::deactivate();
 }
 

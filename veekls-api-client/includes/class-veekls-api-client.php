@@ -103,24 +103,32 @@ class Veekls_API_Client {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-veekls-api-client-loader.php';
+		require_once plugin_dir_path(
+			dirname( __FILE__ )
+		) . 'includes/class-veekls-api-client-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-veekls-api-client-i18n.php';
+		require_once plugin_dir_path(
+			dirname( __FILE__ )
+		) . 'includes/class-veekls-api-client-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-veekls-api-client-admin.php';
+		require_once plugin_dir_path(
+			dirname( __FILE__ )
+		) . 'admin/class-veekls-api-client-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-veekls-api-client-public.php';
+		require_once plugin_dir_path(
+			dirname( __FILE__ )
+		) . 'public/class-veekls-api-client-public.php';
 
 		$this->loader = new Veekls_API_Client_Loader();
 
@@ -139,7 +147,11 @@ class Veekls_API_Client {
 
 		$plugin_i18n = new Veekls_API_Client_I18n();
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		$this->loader->add_action(
+			'plugins_loaded',
+			$plugin_i18n,
+			'load_plugin_textdomain'
+		);
 
 	}
 
@@ -152,11 +164,28 @@ class Veekls_API_Client {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Veekls_API_Client_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Veekls_API_Client_Admin(
+			$this->get_plugin_name(),
+			$this->get_version()
+		);
 
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'setup_settings_page' );
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'setup_settings_sections' );
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'setup_settings_fields' );
+		$this->loader->add_action(
+			'admin_menu',
+			$plugin_admin,
+			'setup_settings_page'
+		);
+
+		$this->loader->add_action(
+			'admin_init',
+			$plugin_admin,
+			'setup_settings_sections'
+		);
+
+		$this->loader->add_action(
+			'admin_init',
+			$plugin_admin,
+			'setup_settings_fields'
+		);
 
 	}
 
@@ -169,10 +198,22 @@ class Veekls_API_Client {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Veekls_API_Client_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Veekls_API_Client_Public(
+			$this->get_plugin_name(),
+			$this->get_version()
+		);
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action(
+			'wp_enqueue_scripts',
+			$plugin_public,
+			'enqueue_styles'
+		);
+
+		$this->loader->add_action(
+			'wp_enqueue_scripts',
+			$plugin_public,
+			'enqueue_scripts'
+		);
 	}
 
 	/**
