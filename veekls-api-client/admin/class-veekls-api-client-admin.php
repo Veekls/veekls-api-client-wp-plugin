@@ -81,16 +81,20 @@ class Veekls_API_Client_Admin {
 	}
 
 	/**
-	 * Adds settings link on the plugins list.
+	 * Adds the settings link on the plugins list.
 	 *
 	 * @since   1.0.0
+	 *
+	 * @param   array $links The links list.
+	 *
+	 * @return  array The updated links list.
 	 */
 	public function add_settings_link( $links ) {
 		$href = admin_url( '/options-general.php' );
 
 		$links = array_merge(
 			array(
-				include_once 'partial/veekls-api-client-admin-settings-link.php',
+				include_once 'partials/veekls-api-client-admin-settings-link.php',
 			),
 			$links
 		);
