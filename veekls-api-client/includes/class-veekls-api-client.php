@@ -72,7 +72,9 @@ class Veekls_API_Client {
 	 * Load the dependencies, define the locale, and set the hooks for the admin area and
 	 * the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since   1.0.0
+	 *
+	 * @param   string $plugin_basename The plugin basename.
 	 */
 	public function __construct( $plugin_basename ) {
 		if ( defined( 'VEEKLS_API_CLIENT_VERSION' ) ) {
@@ -221,14 +223,61 @@ class Veekls_API_Client {
 			$this->get_version()
 		);
 
-		$this->loader->add_filter( 'veekls_characteristic_type', $plugin_public, 'characteristic_type', 0, 1 );
-		$this->loader->add_filter( 'veekls_gearbox_type', $plugin_public, 'gearbox_type', 0, 1 );
-		$this->loader->add_filter( 'veekls_vehicle_type', $plugin_public, 'vehicle_type', 0, 1 );
-		$this->loader->add_filter( 'veekls_fuel_type', $plugin_public, 'fuel_type', 0, 1 );
+		$this->loader->add_filter(
+			'veekls_characteristic_type',
+			$plugin_public,
+			'characteristic_type',
+			0,
+			1
+		);
 
-		$this->loader->add_filter( 'veekls_vehicles', $plugin_public, 'vehicles', 0, 1 );
-		$this->loader->add_filter( 'veekls_vehicle', $plugin_public, 'vehicle', 0, 2 );
-		$this->loader->add_filter( 'veekls_picture', $plugin_public, 'picture', 0, 1 );
+		$this->loader->add_filter(
+			'veekls_gearbox_type',
+			$plugin_public,
+			'gearbox_type',
+			0,
+			1
+		);
+
+		$this->loader->add_filter(
+			'veekls_vehicle_type',
+			$plugin_public,
+			'vehicle_type',
+			0,
+			1
+		);
+
+		$this->loader->add_filter(
+			'veekls_fuel_type',
+			$plugin_public,
+			'fuel_type',
+			0,
+			1
+		);
+
+		$this->loader->add_filter(
+			'veekls_vehicles',
+			$plugin_public,
+			'vehicles',
+			0,
+			0
+		);
+
+		$this->loader->add_filter(
+			'veekls_vehicle',
+			$plugin_public,
+			'vehicle',
+			0,
+			2
+		);
+
+		$this->loader->add_filter(
+			'veekls_picture',
+			$plugin_public,
+			'picture',
+			0,
+			1
+		);
 
 	}
 

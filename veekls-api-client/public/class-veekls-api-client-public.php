@@ -22,11 +22,38 @@
 class Veekls_API_Client_Public {
 
 	/**
+	 * The Vehicles base URL.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string   $vehicles_base The ID of this plugin.
+	 */
+	private $vehicles_base = 'https://vehicles.public.api.veekls.com/';
+
+	/**
+	 * The Vehicle By ID base URL.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string   $vehicle_base The ID of this plugin.
+	 */
+	private $vehicle_base = 'https://vehicles.public.api.veekls.com/by/id/';
+
+	/**
+	 * The pictures base URL.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string   $pictures_base The ID of this plugin.
+	 */
+	private $pictures_base = 'https://pictures.veekls.com/';
+
+	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var      string   $plugin_name The ID of this plugin.
 	 */
 	private $plugin_name;
 
@@ -35,7 +62,7 @@ class Veekls_API_Client_Public {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string   $version   The current version of this plugin.
+	 * @var      string   $version The current version of this plugin.
 	 */
 	private $version;
 
@@ -43,8 +70,8 @@ class Veekls_API_Client_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string $plugin_name   The name of the plugin.
-	 * @param      string $version       The version of this plugin.
+	 * @param      string $plugin_name The name of the plugin.
+	 * @param      string $version     The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -66,13 +93,23 @@ class Veekls_API_Client_Public {
 	 */
 	private function fetch( $url, $query = array(), $args = array() ) {
 
-		$url .= '?' . http_build_query( $options->data );
+		$api_key = get_option( 'veekls_api_client_key' );
+
+		if ( ! $api_key ) {
+			wp_die(
+				esc_html__( 'Please configure you Veekls API Key first.' )
+			);
+		}
+
+		if ( ! empty( $query ) ) {
+			$url .= '?' . http_build_query( $query );
+		}
+
 		$args = array_merge(
 			$args,
 			array(
 				'headers' => array(
-					'Authorization' =>
-						'Basic ' . get_option( 'veekls_api_client_key' ),
+					'Authorization' => 'Basic ' . $api_key,
 				),
 			)
 		);
