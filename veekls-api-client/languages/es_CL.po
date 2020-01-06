@@ -3,20 +3,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Veekls API Client 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/veekls-api-client\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/veekls-api-"
+"client\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-01-06T11:08:18-04:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"POT-Creation-Date: 2020-01-06T10:50:09-04:00\n"
+"PO-Revision-Date: 2020-01-06 12:28-0300\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Domain: veekls-api-client\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es_CL\n"
 
 #. Plugin Name of the plugin
 msgid "Veekls API Client"
-msgstr ""
+msgstr "Cliente Veekls API"
 
 #. Plugin URI of the plugin
 msgid "https://github.com/veekls/veekls-api-client-wp/"
@@ -24,11 +27,11 @@ msgstr ""
 
 #. Description of the plugin
 msgid "Provides easy integration with the Veekls public API."
-msgstr ""
+msgstr "Provee una facil integración con el API pública de Veekls."
 
 #. Author of the plugin
 msgid "Veekls"
-msgstr ""
+msgstr "Veekls"
 
 #. Author URI of the plugin
 msgid "https://about.veekls.com/"
@@ -37,352 +40,356 @@ msgstr ""
 #: admin/class-veekls-api-client-admin.php:113
 #: admin/partials/veekls-api-client-admin-display.php:19
 msgid "Veekls API Client Settings"
-msgstr ""
+msgstr "Configuración de cliente Veekls API"
 
 #: admin/class-veekls-api-client-admin.php:114
 msgid "Veekls API"
-msgstr ""
+msgstr "Veekls API"
 
 #: admin/class-veekls-api-client-admin.php:139
 msgid "Veekls API Key Configuration"
-msgstr ""
+msgstr "Configuración de la llave de Veekls API"
 
 #: admin/class-veekls-api-client-admin.php:155
 msgid "API Key"
-msgstr ""
+msgstr "Llave Veekls API"
 
 #: admin/class-veekls-api-client-admin.php:174
 msgid "You do not have sufficient permissions to access this page."
-msgstr ""
+msgstr "No tienes suficientes permisos para ver esta página."
 
 #: admin/class-veekls-api-client-admin.php:194
-msgid "Copy and paste your API Key here. If you don't have it, please ask your Veekls Agent for it."
+msgid ""
+"Copy and paste your API Key here. If you don't have it, please ask your "
+"Veekls Agent for it."
 msgstr ""
+"Copia y pega tu Llave de API aquí. Si no la tienes, por favor pídela a "
+"tu Agente Veekls."
 
 #: admin/partials/veekls-api-client-admin-api-key-input.php:18
 msgid "Paste your Veekls API Key here..."
-msgstr ""
+msgstr "Pega tu Llave de API aquí..."
 
 #: admin/partials/veekls-api-client-admin-display.php:25
 msgid "Your Veekls API Client settings have been updated!"
-msgstr ""
+msgstr "Tu configuración de Veekls API ha sido actualizada!"
 
 #: admin/partials/veekls-api-client-admin-settings-link.php:18
 msgid "Settings"
-msgstr ""
+msgstr "Configuración"
 
 #: public/class-veekls-api-client-public.php:155
 msgid "Automobile"
-msgstr ""
+msgstr "Automovil"
 
 #: public/class-veekls-api-client-public.php:158
 msgid "Motorcycle"
-msgstr ""
+msgstr "Motocicleta"
 
 #: public/class-veekls-api-client-public.php:161
 msgid "Machinery"
-msgstr ""
+msgstr "Maquinaria"
 
 #: public/class-veekls-api-client-public.php:164
 msgid "Pickup"
-msgstr ""
+msgstr "Camioneta"
 
 #: public/class-veekls-api-client-public.php:167
 msgid "Nautic"
-msgstr ""
+msgstr "Nautico"
 
 #: public/class-veekls-api-client-public.php:170
 msgid "Truck"
-msgstr ""
+msgstr "Camión"
 
 #: public/class-veekls-api-client-public.php:173
 msgid "Other"
-msgstr ""
+msgstr "Otro"
 
 #: public/class-veekls-api-client-public.php:176
 msgid "SUV"
-msgstr ""
+msgstr "SUV"
 
 #: public/class-veekls-api-client-public.php:191
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: public/class-veekls-api-client-public.php:193
 msgid "Auto"
-msgstr ""
+msgstr "Automática"
 
 #: public/class-veekls-api-client-public.php:208
-msgid "Natural Gas"
-msgstr ""
+msgid "Gas"
+msgstr "Gas"
 
 #: public/class-veekls-api-client-public.php:210
 msgid "Biodiesel"
-msgstr ""
+msgstr "Biodiesel"
 
 #: public/class-veekls-api-client-public.php:212
 msgid "Unleaded"
-msgstr ""
+msgstr "Gasolina sin Plomo"
 
 #: public/class-veekls-api-client-public.php:214
 msgid "Electric"
-msgstr ""
+msgstr "Eléctrico"
 
 #: public/class-veekls-api-client-public.php:216
 msgid "Hydrogen"
-msgstr ""
+msgstr "Hidrógeno"
 
 #: public/class-veekls-api-client-public.php:218
 msgid "Ethanol"
-msgstr ""
+msgstr "Etanol"
 
 #: public/class-veekls-api-client-public.php:220
 msgid "Propane"
-msgstr ""
+msgstr "Propano"
 
 #: public/class-veekls-api-client-public.php:222
 msgid "Leaded"
-msgstr ""
+msgstr "Gasolina con Plomo"
 
 #: public/class-veekls-api-client-public.php:224
 msgid "Hybrid"
-msgstr ""
+msgstr "Híbrido"
 
 #: public/class-veekls-api-client-public.php:226
 msgid "Diesel"
-msgstr ""
+msgstr "Diesel"
 
 #: public/class-veekls-api-client-public.php:243
 msgid "AC"
-msgstr ""
+msgstr "AC"
 
 #: public/class-veekls-api-client-public.php:249
 msgid "Power Window"
-msgstr ""
+msgstr "Vidrios Eléctricos"
 
 #: public/class-veekls-api-client-public.php:255
 msgid "Power Locks"
-msgstr ""
+msgstr "Cierre Centralizado"
 
 #: public/class-veekls-api-client-public.php:261
 msgid "Cruise Control"
-msgstr ""
+msgstr "Control Crucero"
 
 #: public/class-veekls-api-client-public.php:267
 msgid "All Wheel Drive"
-msgstr ""
+msgstr "Tracción Integral"
 
 #: public/class-veekls-api-client-public.php:273
 msgid "Adjustable Steering Wheel"
-msgstr ""
+msgstr "Volante Ajustable"
 
 #: public/class-veekls-api-client-public.php:279
 msgid "CD Changer"
-msgstr ""
+msgstr "Caja de CD"
 
 #: public/class-veekls-api-client-public.php:285
 msgid "CD Receiver"
-msgstr ""
+msgstr "Reproductor de CD"
 
 #: public/class-veekls-api-client-public.php:291
 msgid "MP3 Receiver"
-msgstr ""
+msgstr "Reproductor de MP3"
 
 #: public/class-veekls-api-client-public.php:297
 msgid "AM FM Receiver"
-msgstr ""
+msgstr "Radio AM FM"
 
 #: public/class-veekls-api-client-public.php:303
 msgid "On Board Computer"
-msgstr ""
+msgstr "Computador a Bordo"
 
 #: public/class-veekls-api-client-public.php:309
 msgid "Heated Seats"
-msgstr ""
+msgstr "Asientos Calefaccionados"
 
 #: public/class-veekls-api-client-public.php:315
 msgid "Power Seats"
-msgstr ""
+msgstr "Asientos Eléctricos"
 
 #: public/class-veekls-api-client-public.php:321
 msgid "Memory Seats"
-msgstr ""
+msgstr "Asientos con Memoria"
 
 #: public/class-veekls-api-client-public.php:327
 msgid "Leather Seats"
-msgstr ""
+msgstr "Asientos de Cuero"
 
 #: public/class-veekls-api-client-public.php:334
 msgid "Power Mirrors"
-msgstr ""
+msgstr "Espejos Eléctricos"
 
 #: public/class-veekls-api-client-public.php:340
 msgid "Alloy Wheels"
-msgstr ""
+msgstr "Llantas de Aleación"
 
 #: public/class-veekls-api-client-public.php:346
 msgid "Front Fog Lights"
-msgstr ""
+msgstr "Neblineros Delanteros"
 
 #: public/class-veekls-api-client-public.php:352
 msgid "Rear Fog Lights"
-msgstr ""
+msgstr "Neblineros Traseros"
 
 #: public/class-veekls-api-client-public.php:358
 msgid "Power Roof"
-msgstr ""
+msgstr "Techo Eléctrico"
 
 #: public/class-veekls-api-client-public.php:364
 msgid "Manual Roof"
-msgstr ""
+msgstr "Techo Manual"
 
 #: public/class-veekls-api-client-public.php:370
 msgid "Rear Window Wipers"
-msgstr ""
+msgstr "Limpia Luneta"
 
 #: public/class-veekls-api-client-public.php:376
 msgid "Tinted Windows"
-msgstr ""
+msgstr "Vidrios Tintados"
 
 #: public/class-veekls-api-client-public.php:382
 msgid "Xenon Lights"
-msgstr ""
+msgstr "Luces de Xenon"
 
 #: public/class-veekls-api-client-public.php:389
 msgid "Alarm"
-msgstr ""
+msgstr "Alarma"
 
 #: public/class-veekls-api-client-public.php:395
 msgid "Driver Airbag"
-msgstr ""
+msgstr "Aribag Piloto"
 
 #: public/class-veekls-api-client-public.php:401
 msgid "Copilot Airbag"
-msgstr ""
+msgstr "Airbag Copiloto"
 
 #: public/class-veekls-api-client-public.php:407
 msgid "Lateral Airbag"
-msgstr ""
+msgstr "Aribag Lateral"
 
 #: public/class-veekls-api-client-public.php:413
 msgid "ABS"
-msgstr ""
+msgstr "ABS"
 
 #: public/class-veekls-api-client-public.php:419
 msgid "EBD"
-msgstr ""
+msgstr "ABD"
 
 #: public/class-veekls-api-client-public.php:425
 msgid "ESP"
-msgstr ""
+msgstr "ESP"
 
 #: public/class-veekls-api-client-public.php:431
 msgid "TCS"
-msgstr ""
+msgstr "TCS"
 
 #: public/class-veekls-api-client-public.php:437
 msgid "Rear Headrest"
-msgstr ""
+msgstr "Apoya Cabeza Trasero"
 
 #: public/class-veekls-api-client-public.php:443
 msgid "Rear Disc Brakes"
-msgstr ""
+msgstr "Frenos de Disco Traseros"
 
 #: public/class-veekls-api-client-public.php:449
 msgid "Chip Key"
-msgstr ""
+msgstr "Lllave con Chip"
 
 #: public/class-veekls-api-client-public.php:455
 msgid "Locking Wheel Nut"
-msgstr ""
+msgstr "Bloqueo de Llantas"
 
 #: public/class-veekls-api-client-public.php:461
 msgid "Rain Sensor"
-msgstr ""
+msgstr "Sensor de Lluvia"
 
 #: public/class-veekls-api-client-public.php:615
 #: public/class-veekls-api-client-public.php:932
 msgid "Body Style"
-msgstr ""
+msgstr "Tipo de Carrocería"
 
 #: public/class-veekls-api-client-public.php:619
 #: public/class-veekls-api-client-public.php:948
 msgid "Year"
-msgstr ""
+msgstr "Año"
 
 #: public/class-veekls-api-client-public.php:623
 #: public/class-veekls-api-client-public.php:956
 msgid "Odometer"
-msgstr ""
+msgstr "Kilometraje"
 
 #: public/class-veekls-api-client-public.php:629
 #: public/class-veekls-api-client-public.php:952
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #: public/class-veekls-api-client-public.php:633
 #: public/class-veekls-api-client-public.php:964
 msgid "Gearbox"
-msgstr ""
+msgstr "Transmisión"
 
 #: public/class-veekls-api-client-public.php:637
 #: public/class-veekls-api-client-public.php:968
 msgid "Fuel"
-msgstr ""
+msgstr "Combustible"
 
 #: public/class-veekls-api-client-public.php:641
 msgid "Price"
-msgstr ""
+msgstr "Precio"
 
 #: public/class-veekls-api-client-public.php:648
 msgid "View Details"
-msgstr ""
+msgstr "Ver Detalles"
 
 #: public/class-veekls-api-client-public.php:833
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 #: public/class-veekls-api-client-public.php:836
 #: public/class-veekls-api-client-public.php:974
 msgid "Inventory"
-msgstr ""
+msgstr "Stock"
 
 #: public/class-veekls-api-client-public.php:884
 msgid "Vehicle Overview"
-msgstr ""
+msgstr "Detalles del Vehículo"
 
 #: public/class-veekls-api-client-public.php:887
 msgid "Features"
-msgstr ""
+msgstr "Características"
 
 #: public/class-veekls-api-client-public.php:897
 msgid "Comfort"
-msgstr ""
+msgstr "Confort"
 
 #: public/class-veekls-api-client-public.php:903
 msgid "Exterior"
-msgstr ""
+msgstr "Exterior"
 
 #: public/class-veekls-api-client-public.php:909
 msgid "Security"
-msgstr ""
+msgstr "Seguridad"
 
 #: public/class-veekls-api-client-public.php:928
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: public/class-veekls-api-client-public.php:936
 msgid "Brand"
-msgstr ""
+msgstr "Marca"
 
 #: public/class-veekls-api-client-public.php:940
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #: public/class-veekls-api-client-public.php:944
 #: public/class-veekls-api-client-public.php:960
 msgid "Version"
-msgstr ""
+msgstr "Versión"
 
 #: public/class-veekls-api-client-public.php:972
 msgid "Link"
-msgstr ""
+msgstr "Enlace"
