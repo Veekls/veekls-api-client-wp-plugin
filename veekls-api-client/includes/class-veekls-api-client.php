@@ -255,21 +255,6 @@ class Veekls_API_Client {
 			1
 		);
 
-		$this->loader->add_filter(
-			'veekls_vehicles',
-			$plugin_public,
-			'vehicles',
-			0,
-			0
-		);
-
-		$this->loader->add_filter(
-			'veekls_vehicle',
-			$plugin_public,
-			'vehicle',
-			0,
-			2
-		);
 
 		$this->loader->add_filter(
 			'veekls_picture',
@@ -277,6 +262,22 @@ class Veekls_API_Client {
 			'picture',
 			0,
 			1
+		);
+
+		$this->loader->add_action(
+			'veekls_fetch_vehicles',
+			$plugin_public,
+			'vehicles',
+			0,
+			1
+		);
+
+		$this->loader->add_action(
+			'veekls_fetch_vehicle',
+			$plugin_public,
+			'vehicle',
+			0,
+			2
 		);
 
 	}
