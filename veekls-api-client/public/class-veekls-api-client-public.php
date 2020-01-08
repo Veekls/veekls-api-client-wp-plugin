@@ -121,6 +121,13 @@ class Veekls_API_Client_Public {
 
 	}
 
+	/**
+	 *
+	 */
+	public function the_content() {
+		echo 'This is the content';
+		// $vehicles = $this->fetch( $this->vehicles_base );
+	}
 
 	/**
 	 * Build a Veekls picture URL.

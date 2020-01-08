@@ -255,7 +255,6 @@ class Veekls_API_Client {
 			1
 		);
 
-
 		$this->loader->add_filter(
 			'veekls_picture',
 			$plugin_public,
