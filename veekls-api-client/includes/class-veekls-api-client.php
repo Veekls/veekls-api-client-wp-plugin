@@ -260,10 +260,10 @@ class Veekls_API_Client {
 			$plugin_public,
 			'picture',
 			0,
-			1
+			2
 		);
 
-		$this->loader->add_action(
+		$this->loader->add_filter(
 			'veekls_fetch_vehicles',
 			$plugin_public,
 			'vehicles',

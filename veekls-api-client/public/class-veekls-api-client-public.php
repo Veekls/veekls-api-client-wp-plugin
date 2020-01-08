@@ -118,15 +118,6 @@ class Veekls_API_Client_Public {
 		$body     = wp_remote_retrieve_body( $response );
 
 		return json_decode( $body );
-
-	}
-
-	/**
-	 *
-	 */
-	public function the_content() {
-		echo 'This is the content';
-		// $vehicles = $this->fetch( $this->vehicles_base );
 	}
 
 	/**
@@ -135,11 +126,18 @@ class Veekls_API_Client_Public {
 	 * @since   1.0.0
 	 *
 	 * @param   string $id The picture id.
+	 * @param   string $query The URL query parameters.
 	 *
 	 * @return  string The full picture url.
 	 */
-	public function picture( $id ) {
-		return $this->pictures_base . $id;
+	public function picture( $id, $query = array() ) {
+		$url = $this->pictures_base . $id;
+
+		if ( ! empty( $query ) ) {
+			$url .= '?' . http_build_query( $query );
+		}
+
+		return $url;
 	}
 
 	/**
