@@ -10,6 +10,11 @@
  */
 
 /**
+ * Include the search form sortcode.
+ */
+require_once 'shortcodes/class-veekls-api-client-search-form-shortcode.php';
+
+/**
  * The public-facing functionality of the plugin.
  *
  * Defines the plugin name, version, and two examples hooks for how to
@@ -77,6 +82,9 @@ class Veekls_API_Client_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
+
+		// Register Search Form Shortcode.
+		new Veekls_API_Client_Search_Form_Shortcode();
 
 	}
 
