@@ -278,118 +278,107 @@ class Veekls_Api_Client_Search_Form_Shortcode
 			method="GET"
 			role="search">
 
-			<?php if ($atts['layout'] != 'standard') {?>
-
-				<?php if (!in_array('condition', $exclude)) {?>
+			<?php if ($atts['layout'] != 'standard'): ?>
+				<?php if (!in_array('condition', $exclude)): ?>
 					<div class="row condition-wrap">
 						<?php echo $this->condition_field(); ?>
 					</div>
-				<?php }?>
+				<?php endif;?>
 
-				<?php if (!in_array('prices', $exclude)) {?>
+				<?php if (!in_array('prices', $exclude)): ?>
 					<div class="row price-wrap">
-						<?php if (!in_array('min_price', $exclude)) {
-            echo $this->min_price_field();
-        }
+						<?php if (!in_array('min_price', $exclude)): ?>
+            				<?php echo $this->min_price_field(); ?>
+						<?php endif;?>
 
-            if (!in_array('max_price', $exclude)) {
-                echo $this->max_price_field();
-            }?>
+						<?php if (!in_array('max_price', $exclude)): ?>
+							<?php echo $this->max_price_field(); ?>
+						<?php endif;?>
 					</div>
-				<?php }?>
+				<?php endif;?>
 
-				<?php if (!in_array('area', $exclude)) {?>
+				<?php if (!in_array('area', $exclude)): ?>
 					<div class="row area-wrap">
 						<?php echo $this->within_field(); ?>
 						<input class="field area" type="text" name="s" placeholder="<?php echo esc_html($atts['area_placeholder']); ?>" value="<?php echo esc_attr($s); ?>" />
 						<button class="al-button" type="submit"><?php echo esc_html($atts['submit_btn']); ?></button>
 					</div>
-				<?php }?>
+				<?php endif;?>
 
-				<?php if (!in_array('refine', $exclude)) {?>
+				<?php if (!in_array('refine', $exclude)): ?>
 					<a class="refine"><?php echo esc_html($atts['refine_text']) ?> <i class="fa fa-angle-down"></i></a>
 
 					<div class="row extras-wrap">
-						<?php
-if (!in_array('year', $exclude)) {
-            echo $this->year_field();
-        }
+						<?php if (!in_array('year', $exclude)): ?>
+							<?php echo $this->year_field(); ?>
+						<?php endif;?>
 
-            if (!in_array('brand', $exclude)) {
-                echo $this->brand_field();
-            }
+						<?php if (!in_array('brand', $exclude)): ?>
+							<?php echo $this->brand_field(); ?>
+						<?php endif;?>
 
-            if (!in_array('model', $exclude)) {
-                echo $this->model_field();
-            }
+						<?php if (!in_array('model', $exclude)): ?>
+							<?php echo $this->model_field(); ?>
+						<?php endif;?>
 
-            if (!in_array('body_type', $exclude)) {
-                echo $this->body_type_field();
-            }
+						<?php if (!in_array('body_type', $exclude)): ?>
+							<?php echo $this->body_type_field(); ?>
+						<?php endif;?>
 
-            if (!in_array('odometer', $exclude)) {
-                echo $this->odometer_field();
-            }
-            ?>
+						<?php if (!in_array('odometer', $exclude)): ?>
+							<?php echo $this->odometer_field(); ?>
+						<?php endif;?>
 					</div>
-				<?php }?>
-			<?php } else {?>
-				<?php
-if (!in_array('condition', $exclude)) {
-            echo $this->condition_field();
-        }
+				<?php endif;?>
+			<?php else: ?>
+				<?php if (!in_array('condition', $exclude)): ?>
+					<?php echo $this->condition_field(); ?>
+				<?php endif;?>
 
-            if (!in_array('prices', $exclude)) {
-                if (!in_array('min_price', $exclude)) {
-                    echo $this->min_price_field();
-                }
+				<?php if (!in_array('prices', $exclude)): ?>
+					<?php if (!in_array('min_price', $exclude)): ?>
+						<?php echo $this->min_price_field(); ?>
+					<?php endif;?>
 
-                if (!in_array('max_price', $exclude)) {
-                    echo $this->max_price_field();
-                }
-            }
+					<?php if (!in_array('max_price', $exclude)): ?>
+						<?php echo $this->max_price_field(); ?>
+					<?php endif;?>
+				<?php endif;?>
 
-            if (!in_array('year', $exclude)) {
-                echo $this->year_field();
-            }
+				<?php if (!in_array('year', $exclude)): ?>
+					<?php echo $this->year_field(); ?>
+				<?php endif;?>
 
-            if (!in_array('brand', $exclude)) {
-                echo $this->brand_field();
-            }
+				<?php if (!in_array('brand', $exclude)): ?>
+					<?php echo $this->brand_field(); ?>
+				<?php endif;?>
 
-            if (!in_array('model', $exclude)) {
-                echo $this->model_field();
-            }
+				<?php if (!in_array('model', $exclude)): ?>
+					<?php echo $this->model_field(); ?>
+				<?php endif;?>
 
-            if (!in_array('body_type', $exclude)) {
-                echo $this->body_type_field();
-            }
+				<?php if (!in_array('body_type', $exclude)): ?>
+					<?php echo $this->body_type_field(); ?>
+				<?php endif;?>
 
-            if (!in_array('odometer', $exclude)) {
-                echo $this->odometer_field();
-            }
+				<?php if (!in_array('odometer', $exclude)): ?>
+					<?php echo $this->odometer_field(); ?>
+				<?php endif;?>
 
-            if (!in_array('area', $exclude)) {
-                echo $this->within_field();
-                ?>
+				<?php if (!in_array('area', $exclude)): ?>
+					<?php echo $this->within_field(); ?>
 					<input class="field area" type="text" name="s" placeholder="<?php echo esc_html($atts['area_placeholder']); ?>" value="<?php echo esc_attr($s); ?>" />
-					<?php
-}
-            ?>
+				<?php endif;?>
 
 				<button class="al-button" type="submit"><?php echo esc_html($atts['submit_btn']); ?></button>
-
-			<?php }?>
-
+			<?php endif;?>
 		</form>
 
 		<?php
-
-        $output = ob_get_contents();
+$output = ob_get_contents();
         ob_end_clean();
 
         return apply_filters('veekls_api_client_search_form_shortcode_output', $output, $atts);
-
     }
 
     /*
@@ -397,52 +386,39 @@ if (!in_array('condition', $exclude)) {
      */
     public function select_field($options, $args = array())
     {
-
         $output = '';
         ob_start();
 
         ?>
 		<div class="field <?php echo esc_attr(str_replace('_', '-', $args['name'])); ?>">
-
-			<?php if (isset($args['prefix'])) {
-            echo '<span class="prefix">' . esc_html($args['prefix']) . '</span>';
-        }?>
+			<?php if (isset($args['prefix'])): ?>
+            	<span class="prefix"><?php echo esc_html($args['prefix']); ?></span>
+			<?php endif;?>
 
 			<select name="<?php echo esc_attr($args['name']); ?>">
-
 				<option value=""><?php echo esc_attr($args['label']) ?></option>
 
-				<?php if (!empty($options)) {
-
-            foreach ($options as $val => $text) {
-
-                $selected = isset($_GET[$args['name']]) && $_GET[$args['name']] == $val ? ' selected="selected"' : '';
-
-                if (!empty($val)) {?>
-							<option value="<?php echo esc_attr($val); ?>" <?php echo esc_attr($selected); ?> ><?php echo esc_attr($text) ?></option>
-						<?php }
-
-            }
-
-        }
-
-        ?>
+				<?php if (!empty($options)): ?>
+            		<?php foreach ($options as $val => $text): ?>
+                		<?php $selected = isset($_GET[$args['name']]) && $_GET[$args['name']] == $val ? ' selected="selected"' : '';?>
+						<?php if (!empty($val)): ?>
+							<option value="<?php echo esc_attr($val); ?>" <?php echo esc_attr($selected); ?> ><?php echo esc_attr($text); ?></option>
+						<?php endif;?>
+					<?php endforeach;?>
+				<?php endif;?>
 
 			</select>
 
-			<?php if (isset($args['suffix'])) {
-            echo '<span class="suffix">' . esc_html($args['suffix']) . '</span>';
-        }?>
-
+			<?php if (isset($args['suffix'])): ?>
+            	<span class="suffix"><?php echo esc_html($args['suffix']); ?></span>;
+        	<?php endif;?>
 		</div>
 
 		<?php
-
-        $output = ob_get_contents();
+$output = ob_get_contents();
         ob_end_clean();
 
         return apply_filters('veekls_api_client_search_form_field' . $args['name'], $output);
-
     }
 
     /*
@@ -455,48 +431,30 @@ if (!in_array('condition', $exclude)) {
         ob_start();
 
         ?>
-
 		<div class="field <?php echo esc_attr(str_replace('_', '-', $args['name'])); ?>">
+			<?php if (isset($args['prefix'])): ?>
+            	<span class="prefix"><?php echo esc_html($args['prefix']); ?></span>
+			<?php endif;?>
 
-			<?php if (isset($args['prefix'])) {
-            echo '<span class="prefix">' . esc_html($args['prefix']) . '</span>';
-        }?>
-
-			<?php // condition field. If we only have 1 condition, remove the select option
-        if ($args['name'] == 'condition' && count($options) <= 1) {?>
-
+			<?php if ($args['name'] == 'condition' && count($options) <= 1): ?>
 				<input type="hidden" name="condition[]" value="<?php echo esc_html($this->conditions[0]) ?>"/>
+			<?php else: ?>
+				<select multiple="multiple" name="<?php echo esc_attr($args['name']); ?>[]" placeholder="<?php echo esc_attr($args['label']) ?>">
+					<?php if (!empty($options)): ?>
+            			<?php foreach ($options as $val => $text): ?>
+                			<?php $selected = isset($_GET[$args['name']]) && in_array($val, $_GET[$args['name']]) == $val ? ' selected="selected"' : '';?>
+                			<?php if (!empty($val)): ?>
+								<option value="<?php echo esc_attr($val); ?>" <?php echo esc_attr($selected); ?> ><?php echo esc_attr($text) ?></option>
+							<?php endif;?>
+						<?php endforeach;?>
+					<?php endif;?>
+				</select>
+			<?php endif;?>
 
-			<?php } else {?>
-
-			<select multiple="multiple" name="<?php echo esc_attr($args['name']); ?>[]" placeholder="<?php echo esc_attr($args['label']) ?>">
-
-				<?php if (!empty($options)) {
-
-            foreach ($options as $val => $text) {
-
-                $selected = isset($_GET[$args['name']]) && in_array($val, $_GET[$args['name']]) == $val ? ' selected="selected"' : '';
-
-                if (!empty($val)) {?>
-							<option value="<?php echo esc_attr($val); ?>" <?php echo esc_attr($selected); ?> ><?php echo esc_attr($text) ?></option>
-						<?php }
-
-            }
-
-        }
-
-            ?>
-
-			</select>
-
-			<?php }?>
-
-			<?php if (isset($args['suffix'])) {
-            echo '<span class="suffix">' . esc_html($args['suffix']) . '</span>';
-        }?>
-
+			<?php if (isset($args['suffix'])): ?>
+            	<span class="suffix"><?php echo esc_html($args['suffix']); ?></span>
+			<?php endif;?>
 		</div>
-
 		<?php
 
         $output = ob_get_contents();
