@@ -263,12 +263,8 @@ class Veekls_Api_Client_Search_Form_Shortcode
 					</div>
 				<?php endif;?>
 
-				<div class="row area-wrap">
-					<button class="al-button" type="submit"><?php echo esc_html($atts['submit_btn']); ?></button>
-				</div>
-
 				<?php if (!in_array('refine', $exclude)): ?>
-					<a class="refine"><?php echo esc_html($atts['refine_text']) ?> <i class="fa fa-angle-down"></i></a>
+					<a class="refine"><?php echo esc_html($atts['refine_text']); ?> <i class="fa fa-angle-down"></i></a>
 
 					<div class="row extras-wrap">
 						<?php if (!in_array('year', $exclude)): ?>
@@ -281,10 +277,6 @@ class Veekls_Api_Client_Search_Form_Shortcode
 
 						<?php if (!in_array('model', $exclude)): ?>
 							<?php echo $this->model_field(); ?>
-						<?php endif;?>
-
-						<?php if (!in_array('body_type', $exclude)): ?>
-							<?php echo $this->body_type_field(); ?>
 						<?php endif;?>
 
 						<?php if (!in_array('odometer', $exclude)): ?>
@@ -315,16 +307,14 @@ class Veekls_Api_Client_Search_Form_Shortcode
 					<?php echo $this->model_field(); ?>
 				<?php endif;?>
 
-				<?php if (!in_array('body_type', $exclude)): ?>
-					<?php echo $this->body_type_field(); ?>
-				<?php endif;?>
-
 				<?php if (!in_array('odometer', $exclude)): ?>
 					<?php echo $this->odometer_field(); ?>
 				<?php endif;?>
-
-				<button class="al-button" type="submit"><?php echo esc_html($atts['submit_btn']); ?></button>
 			<?php endif;?>
+
+			<div class="submit-wrap">
+				<button class="veekls-button" type="submit"><?php echo esc_html($atts['submit_btn']); ?></button>
+			</div>
 		</form>
 		<?php
 
