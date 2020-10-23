@@ -47,16 +47,13 @@ class Veekls_Api_Client_Search_Form_Shortcode
      */
     public function register_query_vars($vars)
     {
-        $vars[] = 'the_year';
+        $vars[] = 'year';
         $vars[] = 'brand';
         $vars[] = 'model';
-        $vars[] = 'condition';
         $vars[] = 'min_price';
         $vars[] = 'max_price';
         $vars[] = 'body_type';
         $vars[] = 'odometer';
-        $vars[] = 'within';
-        $vars[] = 'area';
 
         return $vars;
     }
@@ -79,7 +76,7 @@ class Veekls_Api_Client_Search_Form_Shortcode
         }
 
         $args = array(
-            'name' => 'the_year',
+            'name' => 'year',
             'label' => __('Year', 'veekls-api-client'),
         );
 
@@ -137,31 +134,6 @@ class Veekls_Api_Client_Search_Form_Shortcode
     }
 
     /*
-     * Condition field setup
-     */
-    public function condition_field()
-    {
-        $conditions = veekls_api_client_option('display_condition');
-        $options = array();
-
-        if (!$conditions) {
-            return;
-        }
-
-        foreach ($conditions as $n) {
-            $options[$n] = $n;
-        }
-
-        $args = array(
-            'name' => 'condition',
-            'label' => __('condition', 'veekls-api-client'),
-            'prefix' => __('I\'m looking for ', 'veekls-api-client'),
-        );
-
-        return $this->multiple_select_field($options, $args);
-    }
-
-    /*
      * Min price field setup
      */
     public function min_price_field()
@@ -169,7 +141,7 @@ class Veekls_Api_Client_Search_Form_Shortcode
         $min_max_price = veekls_api_client_search_form_price_min_max();
         $args = array(
             'name' => 'min_price',
-            'label' => __('min', 'veekls-api-client'),
+            'label' => __('price from', 'veekls-api-client'),
             'prefix' => __('priced from', 'veekls-api-client'),
         );
 
@@ -184,7 +156,7 @@ class Veekls_Api_Client_Search_Form_Shortcode
         $min_max_price = veekls_api_client_search_form_price_min_max();
         $args = array(
             'name' => 'max_price',
-            'label' => __('max', 'veekls-api-client'),
+            'label' => __('price to', 'veekls-api-client'),
             'prefix' => __('to', 'veekls-api-client'),
         );
 
@@ -256,7 +228,6 @@ class Veekls_Api_Client_Search_Form_Shortcode
         $s = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
 
         $atts = shortcode_atts(array(
-            'area_placeholder' => __('State, Zip, Town', 'veekls-api-client'),
             'submit_btn' => __('Find My Car', 'veekls-api-client'),
             'refine_text' => __('More Refinements', 'veekls-api-client'),
             'style' => '1',
@@ -267,24 +238,19 @@ class Veekls_Api_Client_Search_Form_Shortcode
         $exclude = !empty($atts['exclude']) ? array_map('trim', explode(',', $atts['exclude'])) : array();
 
         $output = '';
+
         ob_start();
 
         ?>
-
 		<form
 			id="veekls-api-client-search"
 			class="veekls-api-client-search s-<?php echo esc_attr($atts['style']); ?> <?php echo esc_attr($atts['layout']); ?>" autocomplete="off"
 			action="<?php echo esc_url(get_permalink(veekls_api_client_option('archives_page'))) ?>"
 			method="GET"
-			role="search">
+			role="search"
+			>
 
 			<?php if ($atts['layout'] != 'standard'): ?>
-				<?php if (!in_array('condition', $exclude)): ?>
-					<div class="row condition-wrap">
-						<?php echo $this->condition_field(); ?>
-					</div>
-				<?php endif;?>
-
 				<?php if (!in_array('prices', $exclude)): ?>
 					<div class="row price-wrap">
 						<?php if (!in_array('min_price', $exclude)): ?>
@@ -297,13 +263,9 @@ class Veekls_Api_Client_Search_Form_Shortcode
 					</div>
 				<?php endif;?>
 
-				<?php if (!in_array('area', $exclude)): ?>
-					<div class="row area-wrap">
-						<?php echo $this->within_field(); ?>
-						<input class="field area" type="text" name="s" placeholder="<?php echo esc_html($atts['area_placeholder']); ?>" value="<?php echo esc_attr($s); ?>" />
-						<button class="al-button" type="submit"><?php echo esc_html($atts['submit_btn']); ?></button>
-					</div>
-				<?php endif;?>
+				<div class="row area-wrap">
+					<button class="al-button" type="submit"><?php echo esc_html($atts['submit_btn']); ?></button>
+				</div>
 
 				<?php if (!in_array('refine', $exclude)): ?>
 					<a class="refine"><?php echo esc_html($atts['refine_text']) ?> <i class="fa fa-angle-down"></i></a>
@@ -331,10 +293,6 @@ class Veekls_Api_Client_Search_Form_Shortcode
 					</div>
 				<?php endif;?>
 			<?php else: ?>
-				<?php if (!in_array('condition', $exclude)): ?>
-					<?php echo $this->condition_field(); ?>
-				<?php endif;?>
-
 				<?php if (!in_array('prices', $exclude)): ?>
 					<?php if (!in_array('min_price', $exclude)): ?>
 						<?php echo $this->min_price_field(); ?>
@@ -365,17 +323,12 @@ class Veekls_Api_Client_Search_Form_Shortcode
 					<?php echo $this->odometer_field(); ?>
 				<?php endif;?>
 
-				<?php if (!in_array('area', $exclude)): ?>
-					<?php echo $this->within_field(); ?>
-					<input class="field area" type="text" name="s" placeholder="<?php echo esc_html($atts['area_placeholder']); ?>" value="<?php echo esc_attr($s); ?>" />
-				<?php endif;?>
-
 				<button class="al-button" type="submit"><?php echo esc_html($atts['submit_btn']); ?></button>
 			<?php endif;?>
 		</form>
-
 		<?php
-$output = ob_get_contents();
+
+        $output = ob_get_contents();
         ob_end_clean();
 
         return apply_filters('veekls_api_client_search_form_shortcode_output', $output, $atts);
@@ -413,9 +366,9 @@ $output = ob_get_contents();
             	<span class="suffix"><?php echo esc_html($args['suffix']); ?></span>;
         	<?php endif;?>
 		</div>
-
 		<?php
-$output = ob_get_contents();
+
+        $output = ob_get_contents();
         ob_end_clean();
 
         return apply_filters('veekls_api_client_search_form_field' . $args['name'], $output);
@@ -426,7 +379,6 @@ $output = ob_get_contents();
      */
     public function multiple_select_field($options, $args = array())
     {
-
         $output = '';
         ob_start();
 
@@ -436,20 +388,16 @@ $output = ob_get_contents();
             	<span class="prefix"><?php echo esc_html($args['prefix']); ?></span>
 			<?php endif;?>
 
-			<?php if ($args['name'] == 'condition' && count($options) <= 1): ?>
-				<input type="hidden" name="condition[]" value="<?php echo esc_html($this->conditions[0]) ?>"/>
-			<?php else: ?>
-				<select multiple="multiple" name="<?php echo esc_attr($args['name']); ?>[]" placeholder="<?php echo esc_attr($args['label']) ?>">
-					<?php if (!empty($options)): ?>
-            			<?php foreach ($options as $val => $text): ?>
-                			<?php $selected = isset($_GET[$args['name']]) && in_array($val, $_GET[$args['name']]) == $val ? ' selected="selected"' : '';?>
-                			<?php if (!empty($val)): ?>
-								<option value="<?php echo esc_attr($val); ?>" <?php echo esc_attr($selected); ?> ><?php echo esc_attr($text) ?></option>
-							<?php endif;?>
-						<?php endforeach;?>
-					<?php endif;?>
-				</select>
-			<?php endif;?>
+			<select multiple="multiple" name="<?php echo esc_attr($args['name']); ?>[]" placeholder="<?php echo esc_attr($args['label']) ?>">
+				<?php if (!empty($options)): ?>
+					<?php foreach ($options as $val => $text): ?>
+						<?php $selected = isset($_GET[$args['name']]) && in_array($val, $_GET[$args['name']]) == $val ? ' selected="selected"' : '';?>
+						<?php if (!empty($val)): ?>
+							<option value="<?php echo esc_attr($val); ?>" <?php echo esc_attr($selected); ?> ><?php echo esc_attr($text) ?></option>
+						<?php endif;?>
+					<?php endforeach;?>
+				<?php endif;?>
+			</select>
 
 			<?php if (isset($args['suffix'])): ?>
             	<span class="suffix"><?php echo esc_html($args['suffix']); ?></span>
