@@ -21,7 +21,7 @@
  * @link       https://github.com/veekls/veekls-api-client-wp/
  * @since      1.0.0
  *
- * @package    Veekls_API_Client
+ * @package    veekls-api-client
  */
 
 // If uninstall not called from WordPress, then exit.

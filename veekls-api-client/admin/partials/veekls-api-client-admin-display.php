@@ -16,18 +16,18 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
 	<h2>
-		<?php esc_html_e('Veekls API Client Settings', 'veekls-api-client');?>
+		<?php esc_html_e( 'Veekls API Client Settings', 'veekls-api-client' ); ?>
 	</h2>
 
-	<?php if ($updated): ?>
+	<?php if ( $updated ) : ?>
 	<div class="notice notice-success is-dismissible">
-		<p><?php esc_html_e('Your Veekls API Client settings have been updated!', 'veekls-api-client');?></p>
+		<p><?php esc_html_e( 'Your Veekls API Client settings have been updated!', 'veekls-api-client' ); ?></p>
 	</div>
-	<?php endif;?>
+	<?php endif; ?>
 
 	<form method="post" action="options.php">
-		<?php settings_fields($this->settings_group);?>
-		<?php do_settings_sections($this->settings_page_slug);?>
-		<?php submit_button();?>
+		<?php settings_fields( $this->settings_group ); ?>
+		<?php do_settings_sections( $this->settings_page_slug ); ?>
+		<?php submit_button(); ?>
 	</form>
 </div>

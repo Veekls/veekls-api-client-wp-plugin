@@ -5,8 +5,8 @@
  * @link       https://github.com/veekls/veekls-api-client-wp/
  * @since      1.0.0
  *
- * @package    Veekls_API_Client
- * @subpackage Veekls_API_Client/admin
+ * @package    veekls-api-client
+ * @subpackage veekls-api-client/admin
  */
 
 /**
@@ -15,7 +15,7 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Veekls_API_Client
+ * @package    veekls-api-client
  * @subpackage Veekls_API_Client/admin
  * @author     Santiago G. Marin <santiago.marin@veekls.com>
  */

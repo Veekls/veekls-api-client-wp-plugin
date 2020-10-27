@@ -50,10 +50,8 @@ class Veekls_API_Client_Loader {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-
 		$this->actions = array();
 		$this->filters = array();
-
 	}
 
 	/**
@@ -118,7 +116,6 @@ class Veekls_API_Client_Loader {
 	 * @return array The collection of actions and filters registered with WordPress.
 	 */
 	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
-
 		$hooks[] = array(
 			'hook'          => $hook,
 			'component'     => $component,
@@ -128,7 +125,6 @@ class Veekls_API_Client_Loader {
 		);
 
 		return $hooks;
-
 	}
 
 	/**
@@ -137,7 +133,6 @@ class Veekls_API_Client_Loader {
 	 * @since 1.0.0
 	 */
 	public function run() {
-
 		foreach ( $this->filters as $hook ) {
 			add_filter(
 				$hook['hook'],
@@ -155,7 +150,6 @@ class Veekls_API_Client_Loader {
 				$hook['accepted_args']
 			);
 		}
-
 	}
 
 }

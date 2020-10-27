@@ -14,6 +14,6 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<a href="<?php echo esc_url($href); ?>">' .
-	<?php esc_html_e('Settings', 'veekls-api-client');?>
+<a href="<?php echo esc_url( $href ); ?>">' .
+	<?php esc_html_e( 'Settings', 'veekls-api-client' ); ?>
 </a>

@@ -8,8 +8,7 @@
  * that starts the plugin.
  *
  * @link    https://github.com/veekls/veekls-api-client-wp/
- * @since   1.0.0
- * @package Veekls_API_Client
+ * @package veekls-api-client
  *
  * @wordpress-plugin
  * Plugin Name:       Veekls API Client
@@ -25,8 +24,8 @@
  */
 
 // If this file is called directly, abort.
-if (! defined('WPINC') ) {
-    die;
+if ( ! defined( 'WPINC' ) ) {
+	die;
 }
 
 /**
@@ -34,40 +33,38 @@ if (! defined('WPINC') ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('VEEKLS_API_CLIENT_VERSION', '1.0.0');
+define( 'VEEKLS_API_CLIENT_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-veekls-api-client-activator.php
  */
-function activate_veekls_api_client()
-{
-    include_once plugin_dir_path(__FILE__) .
-    'includes/class-veekls-api-client-activator.php';
+function activate_veekls_api_client() {
+	include_once plugin_dir_path( __FILE__ ) .
+	'includes/class-veekls-api-client-activator.php';
 
-    Veekls_API_Client_Activator::activate();
+	Veekls_API_Client_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-veekls-api-client-deactivator.php
  */
-function deactivate_veekls_api_client()
-{
-    include_once plugin_dir_path(__FILE__) .
-    'includes/class-veekls-api-client-deactivator.php';
+function deactivate_veekls_api_client() {
+	include_once plugin_dir_path( __FILE__ ) .
+	'includes/class-veekls-api-client-deactivator.php';
 
-    Veekls_API_Client_Deactivator::deactivate();
+	Veekls_API_Client_Deactivator::deactivate();
 }
 
-register_activation_hook(__FILE__, 'activate_veekls_api_client');
-register_deactivation_hook(__FILE__, 'deactivate_veekls_api_client');
+register_activation_hook( __FILE__, 'activate_veekls_api_client' );
+register_deactivation_hook( __FILE__, 'deactivate_veekls_api_client' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path(__FILE__) . 'includes/class-veekls-api-client.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-veekls-api-client.php';
 
 /**
  * Begins execution of the plugin.
@@ -78,12 +75,9 @@ require plugin_dir_path(__FILE__) . 'includes/class-veekls-api-client.php';
  *
  * @since 1.0.0
  */
-function run_veekls_api_client()
-{
-
-    $plugin = new Veekls_API_Client(plugin_basename(__FILE__));
-    $plugin->run();
-
+function run_veekls_api_client() {
+	$plugin = new Veekls_API_Client( plugin_basename( __FILE__ ) );
+	$plugin->run();
 }
 
 run_veekls_api_client();
