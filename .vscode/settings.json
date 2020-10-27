@@ -1,12 +1,11 @@
 {
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
+	"editor.useTabStops": true,
 	"editor.tabSize": 4,
-
+	"files.eol": "\n",
 	"phpcs.executablePath": "./vendor/bin/phpcs",
 	"phpcs.standard": "WordPress",
-
-	"phpcbf.executablePath": "./vendor/bin/phpcbf",
-	"phpcbf.standard": "WordPress",
-	"phpcbf.enable": true
+	"phpcs.enable": true,
+	"phpsab.standard": "WordPress"
 }
