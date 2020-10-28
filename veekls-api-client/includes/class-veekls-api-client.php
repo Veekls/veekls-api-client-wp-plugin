@@ -268,6 +268,14 @@ class Veekls_API_Client {
 		);
 
 		$this->loader->add_filter(
+			'veekls_price',
+			$plugin_public,
+			'format_price',
+			0,
+			2
+		);
+
+		$this->loader->add_filter(
 			'veekls_api_client_search_form_get_vehicle_data_args',
 			$plugin_public,
 			'vehicles_data',
