@@ -223,7 +223,6 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 		$output = '';
 
 		ob_start();
-
 		?>
 
 		<form
@@ -364,7 +363,6 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 	public function multiple_select_field( $options, $args = array() ) {
 		$output = '';
 		ob_start();
-
 		?>
 
 		<div class="field <?php echo esc_attr( str_replace( '_', '-', $args['name'] ) ); ?>">
