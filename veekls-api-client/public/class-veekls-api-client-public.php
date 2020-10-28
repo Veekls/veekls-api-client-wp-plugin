@@ -8,6 +8,7 @@
 /**
  * Include the search form sortcode.
  */
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions-formatting.php';
 require_once 'shortcodes/class-veekls-api-client-search-form-shortcode.php';
 
 /**
@@ -134,8 +135,8 @@ class Veekls_API_Client_Public {
 	/**
 	 * Fetches a single Vehicle by id with the provided query.
 	 *
-	 * @param array $id    The Vehicle ID to fetch.
-	 * @param array $query The HTTP request query params.
+	 * @param string $id    The Vehicle ID to fetch.
+	 * @param array  $query The HTTP request query params.
 	 *
 	 * @return array The results data.
 	 */
@@ -192,7 +193,7 @@ class Veekls_API_Client_Public {
 	/**
 	 * Translates Vehicle Type.
 	 *
-	 * @param string $type The Vehicle Type.
+	 * @param object $type The Vehicle Type.
 	 *
 	 * @return string The translated string.
 	 */
@@ -229,7 +230,7 @@ class Veekls_API_Client_Public {
 	/**
 	 * Translates Vehicle Type.
 	 *
-	 * @param string $vehicle The Vehicle data.
+	 * @param object $vehicle The Vehicle data.
 	 *
 	 * @return string The translated string.
 	 */
@@ -257,7 +258,7 @@ class Veekls_API_Client_Public {
 	/**
 	 * Translates Vehicle fuel type.
 	 *
-	 * @param string $vehicle The Vehicle data.
+	 * @param object $vehicle The Vehicle data.
 	 *
 	 * @return string The translated string.
 	 */
@@ -525,11 +526,23 @@ class Veekls_API_Client_Public {
 	/**
 	 * Builds the Vehicle's custom title.
 	 *
-	 * @param string $vehicle The vehicle data.
+	 * @param object $vehicle The vehicle data.
 	 *
 	 * @return string The title.
 	 */
 	public function title( $vehicle ) {
-		return trim( $vehicle->brand ) . ' ' . trim( $vehicle->model ) . ' ' . trim( $vehicle->version );
+		return trim( $vehicle->brand ) .
+			' ' . trim( $vehicle->model ) .
+			' ' . trim( $vehicle->version ) .
+			' ' . trim( $vehicle->year );
+	}
+
+	/**
+	 * Formats the price value.
+	 *
+	 * @param object $vehicle the vehicle data.
+	 */
+	public function format_price( $vehicle ) {
+		return veekls_api_client_format_price( $vehicle->price );
 	}
 }
