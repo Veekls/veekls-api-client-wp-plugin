@@ -204,9 +204,9 @@ class Veekls_API_Client {
 		);
 
 		$this->loader->add_filter(
-			'veekls_characteristic_type',
+			'veekls_characteristic',
 			$plugin_public,
-			'characteristic_type',
+			'characteristic',
 			0,
 			1
 		);
@@ -273,6 +273,14 @@ class Veekls_API_Client {
 			'format_price',
 			0,
 			2
+		);
+
+		$this->loader->add_filter(
+			'veekls_odometer',
+			$plugin_public,
+			'format_odometer',
+			0,
+			1
 		);
 
 		$this->loader->add_filter(

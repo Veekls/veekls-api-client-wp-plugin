@@ -20,21 +20,21 @@ function veekls_api_client_metric() {
  * Miles or Kilometers label.
  */
 function veekls_api_client_miles_kms_label() {
-	return veekls_api_client_metric() === 'no' ? __( 'Miles', 'auto-listings' ) : __( 'Kilometers', 'auto-listings' );
+	return veekls_api_client_metric() === 'no' ? __( 'Miles', 'veekls' ) : __( 'Kilometers', 'veekls' );
 }
 
 /**
  * Miles or Kilometers short label.
  */
 function veekls_api_client_miles_kms_label_short() {
-	return veekls_api_client_metric() === 'no' ? __( 'mi', 'auto-listings' ) : __( 'km', 'auto-listings' );
+	return veekls_api_client_metric() === 'no' ? __( 'mi', 'veekls' ) : __( 'km', 'veekls' );
 }
 
 /**
  * Miles ir Kilometers per hour label.
  */
 function veekls_api_client_per_hour_unit() {
-	return veekls_api_client_metric() === 'yes' ? __( 'mph', 'auto-listings' ) : __( 'kph', 'auto-listings' );
+	return veekls_api_client_metric() === 'yes' ? __( 'mph', 'veekls' ) : __( 'kph', 'veekls' );
 }
 
 /**

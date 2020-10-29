@@ -5,10 +5,8 @@
  * @package veekls-api-client
  */
 
-/**
- * Include the search form sortcode.
- */
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions-formatting.php';
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions-listing.php';
 require_once 'shortcodes/class-veekls-api-client-search-form-shortcode.php';
 
 /**
@@ -294,7 +292,7 @@ class Veekls_API_Client_Public {
 	 *
 	 * @return string The translated string.
 	 */
-	public static function characteristic_type( $characteristic ) {
+	public static function characteristic( $characteristic ) {
 		switch ( $characteristic ) {
 			// Comfort.
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.AC':
@@ -533,8 +531,7 @@ class Veekls_API_Client_Public {
 	public function title( $vehicle ) {
 		return trim( $vehicle->brand ) .
 			' ' . trim( $vehicle->model ) .
-			' ' . trim( $vehicle->version ) .
-			' ' . trim( $vehicle->year );
+			' ' . trim( $vehicle->version );
 	}
 
 	/**
@@ -544,5 +541,14 @@ class Veekls_API_Client_Public {
 	 */
 	public function format_price( $vehicle ) {
 		return veekls_api_client_format_price( $vehicle->price );
+	}
+
+	/**
+	 * Formats the odometer value.
+	 *
+	 * @param object $vehicle the vehicle data.
+	 */
+	public function format_odometer( $vehicle ) {
+		return veekls_odometer( $vehicle->odometer );
 	}
 }
