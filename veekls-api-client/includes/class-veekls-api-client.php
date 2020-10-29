@@ -212,6 +212,14 @@ class Veekls_API_Client {
 		);
 
 		$this->loader->add_filter(
+			'veekls_short_characteristics',
+			$plugin_public,
+			'short_characteristics',
+			0,
+			1
+		);
+
+		$this->loader->add_filter(
 			'veekls_gearbox_type',
 			$plugin_public,
 			'gearbox_type',

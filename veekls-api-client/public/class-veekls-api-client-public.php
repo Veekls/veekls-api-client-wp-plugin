@@ -297,228 +297,265 @@ class Veekls_API_Client_Public {
 			// Comfort.
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.AC':
 				return array(
-					'characteristic' => esc_html__( 'AC', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'AC', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.POWER_WINDOW':
 				return array(
-					'characteristic' => esc_html__( 'Power Window', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'Power Window', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.POWER_LOCKS':
 				return array(
-					'characteristic' => esc_html__( 'Power Locks', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'Power Locks', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.CRUISE_CONTROL':
 				return array(
-					'characteristic' => esc_html__( 'Cruise Control', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'Cruise Control', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.ALL_WHEEL_DRIVE':
 				return array(
-					'characteristic' => esc_html__( 'All Wheel Drive', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'All Wheel Drive', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.ADJUSTABLE_STEERING_WHEEL':
 				return array(
-					'characteristic' => esc_html__( 'Adjustable Steering Wheel', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'Adjustable Steering Wheel', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.CD_CHANGER':
 				return array(
-					'characteristic' => esc_html__( 'CD Changer', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'CD Changer', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.CD_RECEIVER':
 				return array(
-					'characteristic' => esc_html__( 'CD Receiver', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'CD Receiver', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.MP3_RECEIVER':
 				return array(
-					'characteristic' => esc_html__( 'MP3 Receiver', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'MP3 Receiver', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.AM_FM_RECEIVER':
 				return array(
-					'characteristic' => esc_html__( 'AM FM Receiver', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'AM FM Receiver', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.ON_BOARD_COMPUTER':
 				return array(
-					'characteristic' => esc_html__( 'On Board Computer', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'On Board Computer', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.HEATED_SEATS':
 				return array(
-					'characteristic' => esc_html__( 'Heated Seats', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'Heated Seats', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.POWER_SEATS':
 				return array(
-					'characteristic' => esc_html__( 'Power Seats', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'Power Seats', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.MEMORY_SEATS':
 				return array(
-					'characteristic' => esc_html__( 'Memory Seats', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'Memory Seats', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.LEATHER_SEATS':
 				return array(
-					'characteristic' => esc_html__( 'Leather Seats', 'veekls-api-client' ),
-					'type'           => 'comfort',
+					'name' => esc_html__( 'Leather Seats', 'veekls-api-client' ),
+					'type' => 'comfort',
 				);
 
 			// Exterior.
 			case 'CHARACTERISTICS.VEHICLE.EXTERIOR.POWER_MIRRORS':
 				return array(
-					'characteristic' => esc_html__( 'Power Mirrors', 'veekls-api-client' ),
-					'type'           => 'exterior',
+					'name' => esc_html__( 'Power Mirrors', 'veekls-api-client' ),
+					'type' => 'exterior',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.EXTERIOR.ALLOY_WHEELS':
 				return array(
-					'characteristic' => esc_html__( 'Alloy Wheels', 'veekls-api-client' ),
-					'type'           => 'exterior',
+					'name' => esc_html__( 'Alloy Wheels', 'veekls-api-client' ),
+					'type' => 'exterior',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.EXTERIOR.FRONT_FOG_LIGHTS':
 				return array(
-					'characteristic' => esc_html__( 'Front Fog Lights', 'veekls-api-client' ),
-					'type'           => 'exterior',
+					'name' => esc_html__( 'Front Fog Lights', 'veekls-api-client' ),
+					'type' => 'exterior',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.EXTERIOR.REAR_FOG_LIGHTS':
 				return array(
-					'characteristic' => esc_html__( 'Rear Fog Lights', 'veekls-api-client' ),
-					'type'           => 'exterior',
+					'name' => esc_html__( 'Rear Fog Lights', 'veekls-api-client' ),
+					'type' => 'exterior',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.EXTERIOR.POWER_ROOF':
 				return array(
-					'characteristic' => esc_html__( 'Power Roof', 'veekls-api-client' ),
-					'type'           => 'exterior',
+					'name' => esc_html__( 'Power Roof', 'veekls-api-client' ),
+					'type' => 'exterior',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.EXTERIOR.MANUAL_ROOF':
 				return array(
-					'characteristic' => esc_html__( 'Manual Roof', 'veekls-api-client' ),
-					'type'           => 'exterior',
+					'name' => esc_html__( 'Manual Roof', 'veekls-api-client' ),
+					'type' => 'exterior',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.EXTERIOR.REAR_WINDOW_WIPERS':
 				return array(
-					'characteristic' => esc_html__( 'Rear Window Wipers', 'veekls-api-client' ),
-					'type'           => 'exterior',
+					'name' => esc_html__( 'Rear Window Wipers', 'veekls-api-client' ),
+					'type' => 'exterior',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.EXTERIOR.TINTED_WINDOWS':
 				return array(
-					'characteristic' => esc_html__( 'Tinted Windows', 'veekls-api-client' ),
-					'type'           => 'exterior',
+					'name' => esc_html__( 'Tinted Windows', 'veekls-api-client' ),
+					'type' => 'exterior',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.EXTERIOR.XENON_LIGHTS':
 				return array(
-					'characteristic' => esc_html__( 'Xenon Lights', 'veekls-api-client' ),
-					'type'           => 'exterior',
+					'name' => esc_html__( 'Xenon Lights', 'veekls-api-client' ),
+					'type' => 'exterior',
 				);
 
 			// Security.
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.ALARM':
 				return array(
-					'characteristic' => esc_html__( 'Alarm', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'Alarm', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.DRIVER_AIRBAG':
 				return array(
-					'characteristic' => esc_html__( 'Driver Airbag', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'Driver Airbag', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.COPILOT_AIRBAG':
 				return array(
-					'characteristic' => esc_html__( 'Copilot Airbag', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'Copilot Airbag', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.LATERAL_AIRBAG':
 				return array(
-					'characteristic' => esc_html__( 'Lateral Airbag', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'Lateral Airbag', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.ABS':
 				return array(
-					'characteristic' => esc_html__( 'ABS', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'ABS', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.EBD':
 				return array(
-					'characteristic' => esc_html__( 'EBD', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'EBD', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.ESP':
 				return array(
-					'characteristic' => esc_html__( 'ESP', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'ESP', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.TCS':
 				return array(
-					'characteristic' => esc_html__( 'TCS', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'TCS', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.REAR_HEADREST':
 				return array(
-					'characteristic' => esc_html__( 'Rear Headrest', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'Rear Headrest', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.REAR_DISC_BRAKES':
 				return array(
-					'characteristic' => esc_html__( 'Rear Disc Brakes', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'Rear Disc Brakes', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.CHIP_KEY':
 				return array(
-					'characteristic' => esc_html__( 'Chip Key', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'Chip Key', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.LOCKING_WHEEL_NUT':
 				return array(
-					'characteristic' => esc_html__( 'Locking Wheel Nut', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'Locking Wheel Nut', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.SECURITY.RAIN_SENSOR':
 				return array(
-					'characteristic' => esc_html__( 'Rain Sensor', 'veekls-api-client' ),
-					'type'           => 'security',
+					'name' => esc_html__( 'Rain Sensor', 'veekls-api-client' ),
+					'type' => 'security',
 				);
 		}
+	}
+
+	/**
+	 * Builds the Vehicle's custom title.
+	 *
+	 * @param object $vehicle The vehicle data.
+	 *
+	 * @return string The title.
+	 */
+	public function short_characteristics( $vehicle ) {
+		$characteristics = array_replace( array(), $vehicle->characteristics );
+
+		shuffle( $characteristics );
+
+		$characteristics = array_slice(
+			array_filter(
+				array_map(
+					function( $characteristic ) {
+						$value = $this->characteristic( $characteristic );
+
+						if ( ! empty( $value ) && is_array( $value ) && ! empty( $value['name'] ) ) {
+							return $value['name'];
+						}
+
+						return null;
+					},
+					$characteristics
+				),
+				function( $value ) {
+					return ! empty( $value );
+				}
+			),
+			0,
+			3
+		);
+
+		return implode( ', ', $characteristics );
 	}
 
 	/**
