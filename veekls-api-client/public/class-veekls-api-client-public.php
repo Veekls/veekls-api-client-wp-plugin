@@ -138,7 +138,7 @@ class Veekls_API_Client_Public {
 	 *
 	 * @return array The results data.
 	 */
-	public function vehicle( $id, $query ) {
+	public function vehicle( $id, $query = array() ) {
 		$url = $this->vehicle_base . $id;
 
 		return $this->fetch( $url );
