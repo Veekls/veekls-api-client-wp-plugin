@@ -1,12 +1,21 @@
 <?php
 /**
+ * Veekls API Client
+ *
  * The public-facing functionality of the plugin.
  *
- * @package veekls-api-client
+ * @package Veekls/DefaultTheme
  */
 
+/**
+ * Import functions for formatting.
+ */
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions-formatting.php';
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions-listing.php';
+
+/**
+ * Import Search Form shortcode.
+ */
 require_once 'shortcodes/class-veekls-api-client-search-form-shortcode.php';
 
 /**
