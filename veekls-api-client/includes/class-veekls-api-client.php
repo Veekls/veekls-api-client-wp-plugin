@@ -220,9 +220,9 @@ class Veekls_API_Client {
 		);
 
 		$this->loader->add_filter(
-			'veekls_gearbox_type',
+			'veekls_gearbox',
 			$plugin_public,
-			'gearbox_type',
+			'gearbox',
 			0,
 			1
 		);

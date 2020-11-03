@@ -4,7 +4,7 @@
  *
  * The public-facing functionality of the plugin.
  *
- * @package Veekls/DefaultTheme
+ * @package Veekls/API_Client
  */
 
 /**
@@ -252,13 +252,13 @@ class Veekls_API_Client_Public {
 	 *
 	 * @return string The translated string.
 	 */
-	public static function gearbox_type( $vehicle ) {
+	public static function gearbox( $vehicle ) {
 		switch ( $vehicle->gearbox ) {
 			case 'GEARBOX.MANUAL':
 				return esc_html__( 'Manual', 'veekls-api-client' );
 
 			case 'GEARBOX.AUTO':
-				return esc_html__( 'Auto', 'veekls-api-client' );
+				return esc_html__( 'Automatic', 'veekls-api-client' );
 		}
 	}
 
@@ -312,7 +312,7 @@ class Veekls_API_Client_Public {
 
 			case 'CHARACTERISTICS.VEHICLE.COMFORT.POWER_WINDOW':
 				return array(
-					'name' => esc_html__( 'Power Window', 'veekls-api-client' ),
+					'name' => esc_html__( 'Power Windows', 'veekls-api-client' ),
 					'type' => 'comfort',
 				);
 
@@ -402,6 +402,7 @@ class Veekls_API_Client_Public {
 				);
 
 			case 'CHARACTERISTICS.VEHICLE.EXTERIOR.ALLOY_WHEELS':
+			case 'CHARACTERISTICS.VEHICLE.EXTERIOR.ALLOY_AHEELS':
 				return array(
 					'name' => esc_html__( 'Alloy Wheels', 'veekls-api-client' ),
 					'type' => 'exterior',
@@ -526,6 +527,12 @@ class Veekls_API_Client_Public {
 				return array(
 					'name' => esc_html__( 'Rain Sensor', 'veekls-api-client' ),
 					'type' => 'security',
+				);
+
+			default:
+				return array(
+					'name' => $characteristic,
+					'type' => '',
 				);
 		}
 	}
