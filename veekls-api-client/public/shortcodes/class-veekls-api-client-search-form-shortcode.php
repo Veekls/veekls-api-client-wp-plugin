@@ -205,8 +205,6 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 	 * @param array $attrs The attributes to build with.
 	 */
 	public function search_form( $attrs ) {
-		$s = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
-
 		$attrs = shortcode_atts(
 			array(
 				'submit_btn'  => __( 'Find My Car', 'veekls' ),
@@ -219,8 +217,8 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 		);
 
 		$exclude = ! empty( $attrs['exclude'] ) ? array_map( 'trim', explode( ',', $attrs['exclude'] ) ) : array();
-
-		$output = '';
+		$nonce   = wp_create_nonce( 'veekls-search-form-nonce' );
+		$output  = '';
 
 		ob_start();
 		?>
@@ -238,11 +236,11 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 				<?php if ( ! in_array( 'prices', $exclude, true ) ) : ?>
 					<div class="row price-wrap">
 						<?php if ( ! in_array( 'min_price', $exclude, true ) ) : ?>
-							<?php echo wp_kses_post( $this->min_price_field() ); ?>
+							<?php echo filter_var( $this->min_price_field(), FILTER_UNSAFE_RAW ); ?>
 						<?php endif; ?>
 
 						<?php if ( ! in_array( 'max_price', $exclude, true ) ) : ?>
-							<?php echo wp_kses_post( $this->max_price_field() ); ?>
+							<?php echo filter_var( $this->max_price_field(), FILTER_UNSAFE_RAW ); ?>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
@@ -254,53 +252,55 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 
 					<div class="row extras-wrap">
 						<?php if ( ! in_array( 'year', $exclude, true ) ) : ?>
-							<?php echo wp_kses_post( $this->year_field() ); ?>
+							<?php echo filter_var( $this->year_field(), FILTER_UNSAFE_RAW ); ?>
 						<?php endif; ?>
 
 						<?php if ( ! in_array( 'brand', $exclude, true ) ) : ?>
-							<?php echo wp_kses_post( $this->brand_field() ); ?>
+							<?php echo filter_var( $this->brand_field(), FILTER_UNSAFE_RAW ); ?>
 						<?php endif; ?>
 
 						<?php if ( ! in_array( 'model', $exclude, true ) ) : ?>
-							<?php echo wp_kses_post( $this->model_field() ); ?>
+							<?php echo filter_var( $this->model_field(), FILTER_UNSAFE_RAW ); ?>
 						<?php endif; ?>
 
 						<?php if ( ! in_array( 'odometer', $exclude, true ) ) : ?>
-							<?php echo wp_kses_post( $this->odometer_field() ); ?>
+							<?php echo filter_var( $this->odometer_field(), FILTER_UNSAFE_RAW ); ?>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
 			<?php else : ?>
 				<?php if ( ! in_array( 'prices', $exclude, true ) ) : ?>
 					<?php if ( ! in_array( 'min_price', $exclude, true ) ) : ?>
-						<?php echo wp_kses_post( $this->min_price_field() ); ?>
+						<?php echo filter_var( $this->min_price_field(), FILTER_UNSAFE_RAW ); ?>
 					<?php endif; ?>
 
 					<?php if ( ! in_array( 'max_price', $exclude, true ) ) : ?>
-						<?php echo wp_kses_post( $this->max_price_field() ); ?>
+						<?php echo filter_var( $this->max_price_field(), FILTER_UNSAFE_RAW ); ?>
 					<?php endif; ?>
 				<?php endif; ?>
 
 				<?php if ( ! in_array( 'year', $exclude, true ) ) : ?>
-					<?php echo wp_kses_post( $this->year_field() ); ?>
+					<?php echo filter_var( $this->year_field(), FILTER_UNSAFE_RAW ); ?>
 				<?php endif; ?>
 
 				<?php if ( ! in_array( 'brand', $exclude, true ) ) : ?>
-					<?php echo wp_kses_post( $this->brand_field() ); ?>
+					<?php echo filter_var( $this->brand_field(), FILTER_UNSAFE_RAW ); ?>
 				<?php endif; ?>
 
 				<?php if ( ! in_array( 'model', $exclude, true ) ) : ?>
-					<?php echo wp_kses_post( $this->model_field() ); ?>
+					<?php echo filter_var( $this->model_field(), FILTER_UNSAFE_RAW ); ?>
 				<?php endif; ?>
 
 				<?php if ( ! in_array( 'odometer', $exclude, true ) ) : ?>
-					<?php echo wp_kses_post( $this->odometer_field() ); ?>
+					<?php echo filter_var( $this->odometer_field(), FILTER_UNSAFE_RAW ); ?>
 				<?php endif; ?>
 			<?php endif; ?>
 
 			<div class="submit-wrap">
 				<button class="veekls-button" type="submit"><?php echo esc_html( $attrs['submit_btn'] ); ?></button>
 			</div>
+
+			<?php wp_nonce_field( 'veekls_search_vehicle', 'nonce' ); ?>
 		</form>
 		<?php
 
@@ -317,9 +317,16 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 	 * @param array $args The arguments to use.
 	 */
 	public function select_field( $options, $args = array() ) {
+		$nonce    = sanitize_text_field( wp_unslash( isset( $_GET['nonce'] ) ? $_GET['nonce'] : '' ) );
+		$verified = empty( $nonce ) || wp_verify_nonce( $nonce, 'veekls_search_vehicle' );
+
+		if ( ! $verified ) {
+			echo 'Security verification failed.';
+			exit;
+		}
+
 		$output = '';
 		ob_start();
-
 		?>
 
 		<div class="field <?php echo esc_attr( str_replace( '_', '-', $args['name'] ) ); ?>">
@@ -361,6 +368,14 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 	 * @param array $args The arguments to use.
 	 */
 	public function multiple_select_field( $options, $args = array() ) {
+		$nonce    = sanitize_text_field( wp_unslash( isset( $_GET['nonce'] ) ? $_GET['nonce'] : '' ) );
+		$verified = empty( $nonce ) || wp_verify_nonce( $nonce, 'veekls_search_vehicle' );
+
+		if ( ! $verified ) {
+			echo 'Security verification failed.';
+			exit;
+		}
+
 		$output = '';
 		ob_start();
 		?>
@@ -373,7 +388,7 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 			<select multiple="multiple" name="<?php echo esc_attr( $args['name'] ); ?>[]" placeholder="<?php echo esc_attr( $args['label'] ); ?>">
 				<?php if ( ! empty( $options ) ) : ?>
 					<?php foreach ( $options as $val => $text ) : ?>
-						<?php $selected = isset( $_GET[ $args['name'] ] ) && in_array( $val, $_GET[ $args['name'] ] ) === $val ? 'selected' : ''; ?>
+						<?php $selected = isset( $_GET[ $args['name'] ] ) && in_array( $val, $_GET[ $args['name'] ], true ) === $val ? 'selected' : ''; ?>
 						<?php if ( ! empty( $val ) ) : ?>
 							<option value="<?php echo esc_attr( $val ); ?>" <?php echo esc_attr( $selected ); ?>>
 								<?php echo esc_html( $text ); ?>
