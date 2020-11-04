@@ -238,11 +238,11 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 				<?php if ( ! in_array( 'prices', $exclude, true ) ) : ?>
 					<div class="row price-wrap">
 						<?php if ( ! in_array( 'min_price', $exclude, true ) ) : ?>
-							<?php echo filter_var( $this->min_price_field(), FILTER_UNSAFE_RAW ); ?>
+							<?php echo wp_kses_post( $this->min_price_field() ); ?>
 						<?php endif; ?>
 
 						<?php if ( ! in_array( 'max_price', $exclude, true ) ) : ?>
-							<?php echo filter_var( $this->max_price_field(), FILTER_UNSAFE_RAW ); ?>
+							<?php echo wp_kses_post( $this->max_price_field() ); ?>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
@@ -254,47 +254,47 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 
 					<div class="row extras-wrap">
 						<?php if ( ! in_array( 'year', $exclude, true ) ) : ?>
-							<?php echo filter_var( $this->year_field(), FILTER_UNSAFE_RAW ); ?>
+							<?php echo wp_kses_post( $this->year_field() ); ?>
 						<?php endif; ?>
 
 						<?php if ( ! in_array( 'brand', $exclude, true ) ) : ?>
-							<?php echo filter_var( $this->brand_field(), FILTER_UNSAFE_RAW ); ?>
+							<?php echo wp_kses_post( $this->brand_field() ); ?>
 						<?php endif; ?>
 
 						<?php if ( ! in_array( 'model', $exclude, true ) ) : ?>
-							<?php echo filter_var( $this->model_field(), FILTER_UNSAFE_RAW ); ?>
+							<?php echo wp_kses_post( $this->model_field() ); ?>
 						<?php endif; ?>
 
 						<?php if ( ! in_array( 'odometer', $exclude, true ) ) : ?>
-							<?php echo filter_var( $this->odometer_field(), FILTER_UNSAFE_RAW ); ?>
+							<?php echo wp_kses_post( $this->odometer_field() ); ?>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
 			<?php else : ?>
 				<?php if ( ! in_array( 'prices', $exclude, true ) ) : ?>
 					<?php if ( ! in_array( 'min_price', $exclude, true ) ) : ?>
-						<?php echo filter_var( $this->min_price_field(), FILTER_UNSAFE_RAW ); ?>
+						<?php echo wp_kses_post( $this->min_price_field() ); ?>
 					<?php endif; ?>
 
 					<?php if ( ! in_array( 'max_price', $exclude, true ) ) : ?>
-						<?php echo filter_var( $this->max_price_field(), FILTER_UNSAFE_RAW ); ?>
+						<?php echo wp_kses_post( $this->max_price_field() ); ?>
 					<?php endif; ?>
 				<?php endif; ?>
 
 				<?php if ( ! in_array( 'year', $exclude, true ) ) : ?>
-					<?php echo filter_var( $this->year_field(), FILTER_UNSAFE_RAW ); ?>
+					<?php echo wp_kses_post( $this->year_field() ); ?>
 				<?php endif; ?>
 
 				<?php if ( ! in_array( 'brand', $exclude, true ) ) : ?>
-					<?php echo filter_var( $this->brand_field(), FILTER_UNSAFE_RAW ); ?>
+					<?php echo wp_kses_post( $this->brand_field() ); ?>
 				<?php endif; ?>
 
 				<?php if ( ! in_array( 'model', $exclude, true ) ) : ?>
-					<?php echo filter_var( $this->model_field(), FILTER_UNSAFE_RAW ); ?>
+					<?php echo wp_kses_post( $this->model_field() ); ?>
 				<?php endif; ?>
 
 				<?php if ( ! in_array( 'odometer', $exclude, true ) ) : ?>
-					<?php echo filter_var( $this->odometer_field(), FILTER_UNSAFE_RAW ); ?>
+					<?php echo wp_kses_post( $this->odometer_field() ); ?>
 				<?php endif; ?>
 			<?php endif; ?>
 
