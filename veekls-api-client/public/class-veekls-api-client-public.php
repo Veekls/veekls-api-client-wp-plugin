@@ -97,9 +97,7 @@ class Veekls_API_Client_Public {
 		$api_key = get_option( 'veekls_api_client_key' );
 
 		if ( ! $api_key ) {
-			wp_die(
-				esc_html__( 'Please configure you Veekls API Key first.' )
-			);
+			wp_die( esc_html__( 'Please configure you Veekls API Key first.' ) );
 		}
 
 		if ( ! empty( $query ) ) {

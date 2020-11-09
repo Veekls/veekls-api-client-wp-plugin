@@ -189,7 +189,11 @@ class Veekls_API_Client {
 			'setup_settings_fields'
 		);
 
-		$this->loader->add_action( 'customize_register', $plugin_admin, 'veekls_customize_register' );
+		$this->loader->add_action(
+			'customize_register',
+			$plugin_admin,
+			'veekls_customize_register'
+		);
 	}
 
 	/**
