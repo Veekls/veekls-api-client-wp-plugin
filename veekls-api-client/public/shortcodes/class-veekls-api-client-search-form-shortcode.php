@@ -225,7 +225,7 @@ class Veekls_Api_Client_Search_Form_Shortcode {
 
 		<form
 			class="veekls-search s-<?php echo esc_attr( $attrs['style'] ); ?> <?php echo esc_attr( $attrs['layout'] ); ?>"
-			action="<?php echo esc_url( get_permalink( veekls_api_client_option( 'archives_page' ) ) ); ?>"
+			action="<?php echo esc_url( wp_make_link_relative( get_permalink( get_option( 'veekls_vehicles_page' ) ) ) ); ?>"
 			autocomplete="off"
 			id="veekls-search"
 			role="search"

@@ -5,7 +5,7 @@
  * @link       https://github.com/veekls/veekls-api-client-wp/
  * @since      1.0.0
  *
- * @package    veekls-api-client
+ * @package    Veekls/API_Client_Plugin
  * @subpackage veekls-api-client/admin
  */
 
@@ -20,7 +20,6 @@
  * @author     Santiago G. Marin <santiago.marin@veekls.com>
  */
 class Veekls_API_Client_Admin {
-
 	/**
 	 * The ID of this plugin.
 	 *
@@ -74,10 +73,8 @@ class Veekls_API_Client_Admin {
 	 * @param    string $version     The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
-
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
-
 	}
 
 	/**
@@ -90,7 +87,6 @@ class Veekls_API_Client_Admin {
 	 * @return  array The updated links list.
 	 */
 	public function add_settings_link( $actions ) {
-
 		$page  = $this->settings_page_slug;
 		$href  = admin_url( "/admin.php?page=$page" );
 		$title = esc_html__( 'Settings', 'veekls-api-client' );
@@ -104,7 +100,6 @@ class Veekls_API_Client_Admin {
 		);
 
 		return $actions;
-
 	}
 
 	/**
@@ -113,7 +108,6 @@ class Veekls_API_Client_Admin {
 	 * @since   1.0.0
 	 */
 	public function setup_settings_page() {
-
 		add_menu_page(
 			esc_html__( 'Veekls API Client Settings', 'veekls-api-client' ),
 			esc_html__( 'Veekls API', 'veekls-api-client' ),
@@ -129,7 +123,6 @@ class Veekls_API_Client_Admin {
 				),
 			100
 		);
-
 	}
 
 	/**
@@ -138,14 +131,12 @@ class Veekls_API_Client_Admin {
 	 * @since   1.0.0
 	 */
 	public function setup_settings_sections() {
-
 		add_settings_section(
 			$this->settings_api_key_section_slug,
 			esc_html__( 'Veekls API Key Configuration', 'veekls-api-client' ),
 			array( $this, 'api_key_section_text' ),
 			$this->settings_page_slug
 		);
-
 	}
 
 	/**
@@ -154,7 +145,6 @@ class Veekls_API_Client_Admin {
 	 * @since   1.0.0
 	 */
 	public function setup_settings_fields() {
-
 		add_settings_field(
 			'veekls_api_client_key',
 			esc_html__( 'API Key', 'veekls-api-client' ),
@@ -164,7 +154,6 @@ class Veekls_API_Client_Admin {
 		);
 
 		register_setting( $this->settings_group, 'veekls_api_client_key' );
-
 	}
 
 	/**
@@ -173,7 +162,6 @@ class Veekls_API_Client_Admin {
 	 * @since   1.0.0
 	 */
 	public function setup_settings_page_content() {
-
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die(
 				esc_html__(
@@ -186,7 +174,6 @@ class Veekls_API_Client_Admin {
 		$updated = filter_input( INPUT_GET, 'settings-updated', FILTER_SANITIZE_SPECIAL_CHARS );
 
 		include_once 'partials/veekls-api-client-admin-display.php';
-
 	}
 
 	/**
@@ -195,12 +182,10 @@ class Veekls_API_Client_Admin {
 	 * @access private
 	 */
 	public function api_key_section_text() {
-
 		echo esc_html__(
 			'Copy and paste your API Key here. If you don\'t have it, please ask your Veekls Agent for it.',
 			'veekls-api-client'
 		);
-
 	}
 
 	/**
@@ -209,11 +194,52 @@ class Veekls_API_Client_Admin {
 	 * @since   1.0.0
 	 */
 	public function setup_settings_api_key_field() {
-
 		$value = get_option( 'veekls_api_client_key' );
 
 		include_once 'partials/veekls-api-client-admin-api-key-input.php';
-
 	}
 
+	/**
+	 * Registers the customizer.
+	 *
+	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+	 */
+	public function veekls_customize_register( $wp_customize ) {
+		$wp_customize->add_section(
+			new WP_Customize_Section(
+				$wp_customize,
+				'veekls_api_client',
+				array(
+					'title' => esc_html__( 'Veekls API Client Options', 'veekls' ),
+				)
+			)
+		);
+
+		// -- Vehicles page.
+
+		$wp_customize->add_setting(
+			new WP_Customize_Setting(
+				$wp_customize,
+				'veekls_vehicles_page',
+				array(
+					'type' => 'option',
+				)
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Control(
+				$wp_customize,
+				'veekls_vehicles_page',
+				array(
+					'label'       => esc_html__( 'Results And Vehicles Page', 'veekls' ),
+					'section'     => 'veekls_api_client',
+					'type'        => 'dropdown-pages',
+					'description' => esc_html(
+						__( 'The page where all vehicles and search results are displayed.', 'veekls' )
+					),
+				)
+			)
+		);
+	}
 }
